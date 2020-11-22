@@ -1,0 +1,51 @@
+% Author: Jiří Křištof <xkrist22@stud.fit.vutbr.cz>
+% Author: Petr Češka <xceska05@stud.fit.vutbr.cz>
+
+
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[left=2cm, top=3cm, text={17cm, 24cm}]{geometry}
+\usepackage{times}
+\usepackage{verbatim}
+\usepackage{graphicx} % vkládání obrázků
+\usepackage[unicode]{hyperref}
+\hypersetup{
+	colorlinks = true,
+	hypertexnames = false,
+	citecolor = red
+}
+
+
+\begin{document}
+
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Titulní stránka %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\begin{titlepage}
+		\begin{center}
+			\includegraphics[width=0.77\linewidth]{FIT_logo.pdf} \\
+
+			\vspace{\stretch{0.382}}
+
+			\Huge{Projektová dokumentace} \\
+			\LARGE{\textbf{Modelování a simulace}} \\
+			\Large{Téma 9 -- Diskrétní model z oblasti služeb a dopravy}
+			\vspace{\stretch{0.618}}
+		\end{center}
+
+		\begin{minipage}{0.65 \textwidth}
+			{\Large \today}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[r]{0.35 \textwidth}
+			\Large
+			\begin{tabular}{l l}
+				\textbf{Jiří Křištof} & \textbf{(xkrist22)} \\
+				Petr Češka & (xceska05) \\
+			\end{tabular}
+		\end{minipage}
+	\end{titlepage}
+
+\end{document}
+
