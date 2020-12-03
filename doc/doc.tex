@@ -4,24 +4,19 @@
 
 \documentclass[a4paper, 11pt]{article}
 
+
 \usepackage[czech]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[left=2cm, top=3cm, text={17cm, 24cm}]{geometry}
 \usepackage{times}
-\usepackage{verbatim}
-\usepackage{graphicx} % vkládání obrázků
-\usepackage[unicode]{hyperref}
-\hypersetup{
-	colorlinks = true,
-	hypertexnames = false,
-	citecolor = red
-}
-
+\usepackage{graphicx}
+\usepackage[hyphens]{url}
+\usepackage[unicode, colorlinks, hypertexnames=false, citecolor=red]{hyperref}
 
 \begin{document}
 
 
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Titulní stránka %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%% Titulní stránka %%%%%%%%%%%%%%%%%
 	\begin{titlepage}
 		\begin{center}
 			\includegraphics[width=0.77\linewidth]{FIT_logo.pdf} \\
@@ -47,5 +42,92 @@
 		\end{minipage}
 	\end{titlepage}
 
+	%%%%%%%%%%%%%%%%% Vlastní práce %%%%%%%%%%%%%%%%%
+
+\section{Úvod}
+V rámci projektu je řešen proces vyřizování objednávek jídel a jejich následná distribuce. Zejména z důvodu pandemie nemoci covid-19 se pro mnohá restaurační zařízení stal rozvoz jídla jedinou možností, jak jejich provoz nepřerušit. Smyslem projektu je zjistit, jaký způsob doručování jídel je pro restaurační provoz nejefektivnější a nejvýdělečnější. 
+
+\subsection{Autoři práce}
+Na vypracování projektu se podíleli studenti FIT VUT v Brně Jiří Křištof (\texttt{xkrist22@stud.fit.vutbr.cz}) a Petr Češka (xceska05@stud.fit.vutbr.cz). 
+
+\subsection{Zdroje}
+Při řešení technické části projektu, jako sestavení modelu \cite[snímek 7]{IMS_course} a následná simulace \cite[snímek 8]{IMS_course}. 
+
+Fakta využívaná v rámci projektu byla získána pozorováním práce zaměstnanců provozovny rychlého občerstvení Roj Kebab sídlící na adrese Skácelova 69, 612 00 Brno-Královo Pole.
+
+V rámci projektu jsou dále využívána data o vozidlech obvykle realizující rozvozové služby \cite{car_peugeot, car_fiat}.
+
+Pro zkoumání výdělečnosti doručování z hlediska restaurací využíváme výpočet ceny uváděný v prostředcích hromadného sdělování \cite{news}.
+
+\subsection{Validita modelu}
+Validita \cite[snímek 37]{IMS_course} byla ověřována při komunikaci se zaměstnanci výše zmíněné provozovny rychlého občerstvení. Validita byla dále ověřena pomocí srovnání experimentů \cite[snímek 9]{IMS_course} s realitou.
+
+\section{Rozbor tématu, použité technologie}
+Zákazníci si v průběhu dne telefonicky či online objednávají pokrmy připravované restaurací. Restaurace má určený počet kuchařů. Každý kuchař buď připravuje objednané jídlo, nebo čeká na příjem objednávky. Po připravení objednávky je jídlo buď doručeno kurýrem restaurace, nebo je po určitém čase předáno kurýrovi externí doručovací služby. 
+
+Kurýr restauračního zařízení může přepravovat pouze určité množství připravených objednávek. Tyto zásilky poté postupně rozváží. Při doručování jídla je možné využít dva různé typy vozidel. Prvním vozidlem je Peugeot Partner Combi; staitstiky o vozidle jsou uvedeny v tabulce \ref{tab:1}. Druhým testovaným vozidlem je Fiat Doblo; staitstiky o vozidle jsou uvedeny v tabulce \ref{tab:2}. Při experimentování je sledována spotřeba vozidel -- tankování paliva představuje provozní náklady a zároveň zpožďuje přepravu zásilek kurýrem.
+
+\subsection{použité postupy}
+Simulační model \cite[snímek 9]{IMS_course} je implementován programem v jazyce \texttt{C++} s využitím simulační knihovny \texttt{SIMLIB} \cite{SIMLIB}.
+
+\subsection{Použité technologie}
+
+\section{Koncepce modelu}
+\subsection{Popis konceptuálního modelu}
+\subsection{Forma konceptuálního modelu}
+
+\section{Architektura simulačního modelu}
+\subsection{Mapování konceptuálního modelu do simulačního modelu}
+
+\section{Podstata simulačních experimentů a jejich průběh}
+\subsection{Postup experimentování}
+\subsection{Dokumentace experimentů}
+
+\section{Shrnutí simulačních experimentů a závěr}
+
+%%%%%%%%%%%%%%%%% Přílohy %%%%%%%%%%%%%%%%%
+
+\section*{Přílohy}
+\begin{table}[h]
+\centering
+\begin{tabular}{cc}
+\textbf{Parametr} & \textbf{Hodnota}                                                                                   \\ \hline
+spotřeba & 6,7l/100km \\ \hline
+nádrž  & 60l \\ \hline                      
+dojezd &  896km \\ \hline
+palivo & diesel
+\end{tabular}
+\caption{Využívané parametry vozu Peugeot Partner Combi}
+\label{tab:1}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cc}
+\textbf{Parametr} & \textbf{Hodnota}                                                                                   \\ \hline
+spotřeba & 9,7l/100km \\ \hline
+nádrž  & 22l \\ \hline
+dojezd &  227km \\ \hline
+palivo & CNG
+\end{tabular}
+\caption{Využívané parametry vozu Fiat Doblo}
+\label{tab:2}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcc}
+\textbf{PHM} & \textbf{Stanice} & \textbf{Cena}                                                                                   \\ \hline
+Diesel & Globus, Brno & 25,80 Kč \\ \hline
+CNG & DPMB, Brno & 27,50 Kč
+\end{tabular}
+\caption{Ceny pohonných hmot ke dni 3. 12. 2020}
+\label{tab:3}
+\end{table}
+
+
+	%%%%%%%%%%%%%%%%% Citace %%%%%%%%%%%%%%%%%
+\bibliography{doc} 
+\bibliographystyle{czechiso}
 \end{document}
 
