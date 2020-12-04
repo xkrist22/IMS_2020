@@ -9,4 +9,3 @@ CC_FLAGS = #TODO
 
 model:
 	$(CC) $(SRC_FILES) $(FLAGS) model
-
