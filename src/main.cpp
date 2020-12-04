@@ -1,9 +1,14 @@
-#include <cstdlib>
 #include <simlib.h>
+#include <cstdlib>
 #include <iostream>
-#include <stdio.h>
-#include <string.h>
+#include <string>
+#include <vector>
+#include "intern_time/intern_time.h"
+#include "input_data/input_data.h"
 
+using namespace std;
+
+/*
 void printHelp(){
     std::cout << "help" << std::endl;
 }
@@ -44,10 +49,14 @@ void checkArgs(int argc, char *argv[]) {
     }
 }
 
-
+*/
 int main(int argc, char *argv[]) {
+	vector<string> args(argv, argv + argc);
+	input_data data(args);
 
+	return 0;
+/*
     checkArgs(argc, argv);
 
-    return 0;
+*/
 }
