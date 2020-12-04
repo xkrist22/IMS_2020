@@ -1,6 +1,8 @@
 #include <cstdlib>
 #include <simlib.h>
 #include <iostream>
+#include <stdio.h>
+#include <string.h>
 
 void printHelp(){
     std::cout << "help" << std::endl;
