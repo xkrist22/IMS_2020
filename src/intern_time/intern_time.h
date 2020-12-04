@@ -52,7 +52,35 @@ public:
 	 * @param days time in days
 	 * @return time in default units
 	 */
-	static int in_days(int days);
+	static int in_days(int time);
+
+	/**
+	 * Method presenting time in default units in day unit
+	 * @param time time in default unit
+	 * @return time in days
+	 */
+	static int to_days(int time);
+
+	/**
+ 	 * Method presenting time in default units in hour unit
+ 	 * @param time time in default unit
+ 	 * @return time in hours
+ 	 */
+	static int to_hours(int time);
+
+	/**
+  	 * Method presenting time in default units in minute unit
+  	 * @param time time in default unit
+  	 * @return time in minutes
+  	 */
+	static int to_minutes(int time);
+
+	/**
+  	 * Method presenting time in default units in second unit
+  	 * @param time time in default unit
+  	 * @return time in seconds
+  	 */
+	static int to_seconds(int time);
 
 };
 

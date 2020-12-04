@@ -30,3 +30,32 @@ int intern_time::in_days(int days) {
 	}
 	return days * HOURS * MINUTES * SECONDS;
 }
+
+int intern_time::to_days(int time) {
+	if (time < 0) {
+		throw "Negative time error!";
+	}
+	return time / SECONDS / MINUTES / HOURS;
+}
+
+int intern_time::to_hours(int time) {
+	if (time < 0) {
+		throw "Negative time error!";
+	}
+	return time / SECONDS / MINUTES;
+}
+
+int intern_time::to_minutes(int time) {
+	if (time < 0) {
+		throw "Negative time error!";
+	}
+	return time / SECONDS;
+}
+
+int intern_time::to_seconds(int time) {
+	if (time < 0) {
+		throw "Negative time error!";
+	}
+	return time;
+}
+
