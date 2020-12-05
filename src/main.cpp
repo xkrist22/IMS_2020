@@ -5,6 +5,7 @@
 #include <vector>
 #include "intern_time/intern_time.h"
 #include "input_data/input_data.h"
+#include "Shift.h"
 
 using namespace std;
 
@@ -50,13 +51,19 @@ void checkArgs(int argc, char *argv[]) {
 }
 
 */
+/**
+ *
+ * @param argc
+ * @param argv arg1 = num of chefs, arg2 = num of delivery cars
+ * @return
+ */
 int main(int argc, char *argv[]) {
 	vector<string> args(argv, argv + argc);
 	input_data data(args);
 
-	return 0;
-/*
-    checkArgs(argc, argv);
+	Init(0, data.get_stop_time());
+	(new Shift(data))->Activate();
+    Run();
 
-*/
+	return 0;
 }

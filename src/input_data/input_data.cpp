@@ -22,23 +22,37 @@ input_data::input_data(vector<string> args) {
 				cerr << "Invalid value of parameter " << args[i];
 				exit(1);
 			}
-		} else if (args[i] == "-chew-num") {
+        } else if (args[i] == "-workplaces") {
+            try {
+                this->workplaces = stoi(args[i + 1]);
+            } catch (const exception& e) {
+                cerr << "Invalid value of parameter " << args[i];
+                exit(1);
+            }
+		} else if (args[i] == "-chef-num") {
 			try {
-				this->chew_num = stoi(args[i + 1]);
+				this->chef_num = stoi(args[i + 1]);
 			} catch (const exception& e) {
 				cerr << "Invalid value of parameter " << args[i];
 				exit(1);
 			}
-		} else if (args[i] == "-chew-center") {
+		} else if (args[i] == "-chef-pause") {
+            try {
+                this->chef_pause = stoi(args[i + 1]);
+            } catch (const exception& e) {
+                cerr << "Invalid value of parameter " << args[i];
+                exit(1);
+            }
+		} else if (args[i] == "-chef-center") {
 			try {
-				this->chew_center = stoi(args[i + 1]);
+				this->chef_center = stoi(args[i + 1]);
 			} catch (const exception& e) {
 				cerr << "Invalid value of parameter " << args[i];
 				exit(1);
 			}
-		} else if (args[i] == "-chew-sigma") {
+		} else if (args[i] == "-chef-sigma") {
 			try {
-				this->chew_sigma = stoi(args[i + 1]);
+				this->chef_sigma = stoi(args[i + 1]);
 			} catch (const exception& e) {
 				cerr << "Invalid value of parameter " << args[i];
 				exit(1);
@@ -46,13 +60,6 @@ input_data::input_data(vector<string> args) {
 		} else if (args[i] == "-order-center") {
 			try {
 				this->order_center = stoi(args[i + 1]);
-			} catch (const exception& e) {
-				cerr << "Invalid value of parameter " << args[i];
-				exit(1);
-			}
-		} else if (args[i] == "-order-sigma") {
-			try {
-				this->order_sigma = stoi(args[i + 1]);
 			} catch (const exception& e) {
 				cerr << "Invalid value of parameter " << args[i];
 				exit(1);
@@ -105,11 +112,11 @@ input_data::input_data(vector<string> args) {
 			cerr << "Params:\n";
 			cerr << "\t-car-type: define type of delivery car, can be \"diesel\" or \"gasoline\"\n";
 			cerr << "\t-car-num: number of delivering car\n";
-			cerr << "\t-chew-num: number of chews\n";
-			cerr << "\t-chew-center: center of normal divide for cooking time\n";
-			cerr << "\t-chew-sigma: disperse of normal divide for cooking time\n";
-			cerr << "\t-order-center: center of normal divide for order generating time\n";
-			cerr << "\t-order-sigma: disperse of normal divide for order generating time\n";
+			cerr << "\t-chef-num: number of chefs\n";
+            cerr << "\t-chef-pause: constant time of chefs pauses\n";
+			cerr << "\t-chef-center: center of normal divide for cooking time\n";
+			cerr << "\t-chef-sigma: disperse of normal divide for cooking time\n";
+			cerr << "\t-order-center: center of exponential divide for order generating time\n";
 			cerr << "\t-order-wait: after this time food will be passed to external delivery service\n";
 			cerr << "\t-car-delivery-center: center of normal divide for delivery time\n";
 			cerr << "\t-car-delivery-sigma: disperse of normal divide for delivery time\n";
@@ -118,6 +125,11 @@ input_data::input_data(vector<string> args) {
 			cerr << "\t-stop-time: duration of simulation\n";
 		}
 	}
+    new_orders = new Queue;
+
+    waiting_delivery = new Queue;
+
+    kitchen = new Store("kitchen", workplaces);
 }
 
 int input_data::get_car_type() {
@@ -128,20 +140,28 @@ int input_data::get_car_num() {
 	return this->car_num;
 }
 
+int input_data::get_workplaces() {
+    return this->workplaces;
+}
+
 int input_data::get_chef_num() {
-	return this->chew_num;
+	return this->chef_num;
+}
+
+int input_data::get_chef_pause() {
+    return this->chef_pause;
 }
 
 int input_data::get_order_center() {
 	return this->order_center;
 }
 
-int input_data::get_chew_center() {
-	return this->order_sigma;
+int input_data::get_chef_center() {
+    return this->chef_center;
 }
 
-int input_data::get_chew_sigma() {
-	return this->chew_sigma;
+int input_data::get_chef_sigma() {
+	return this->chef_sigma;
 }
 
 int input_data::get_order_wait_time() {

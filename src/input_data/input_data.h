@@ -23,6 +23,7 @@
 
 using namespace std;
 
+#include <simlib.h>
 /**
  * Class input_data
  *
@@ -36,13 +37,15 @@ public:
 
 	int get_car_num();
 
+	int get_workplaces();
+
 	int get_chef_num();
 
 	int get_order_center();
 
-	int get_chew_center();
+	int get_chef_center();
 
-	int get_chew_sigma();
+	int get_chef_sigma();
 
 	int get_order_wait_time();
 
@@ -56,14 +59,23 @@ public:
 
 	int get_stop_time();
 
+    int get_chef_pause();
+
+    Queue *new_orders;
+
+    Queue *waiting_delivery;
+
+    Store *kitchen;
+
 private:
 	int car_type;
 	int car_num;
-	int chew_num;
-	int chew_center;
-	int chew_sigma;
+	int workplaces;
+	int chef_num;
+	int chef_center;
+	int chef_pause;
+	int chef_sigma;
 	int order_center;
-	int order_sigma;
 	int order_wait;
 	int car_delivery_center;
 	int car_delivery_sigma;
