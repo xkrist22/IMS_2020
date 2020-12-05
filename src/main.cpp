@@ -6,51 +6,11 @@
 #include "intern_time/intern_time.h"
 #include "input_data/input_data.h"
 #include "Shift.h"
+#include "car_interruption.h"
+#include "chew_interruption.h"
 
 using namespace std;
 
-/*
-void printHelp(){
-    std::cout << "help" << std::endl;
-}
-
-void checkArgs(int argc, char *argv[]) {
-    unsigned int d,c;
-    int pos = 1;
-    char *temp;
-
-
-    while (pos < argc) {  //cycle through all arguments
-        if (0 == strcmp(argv[pos], "-d")) {
-            d = (int) strtol(argv[pos+1], &temp, 10);
-            if (*temp != '\0') {
-                exit(1);
-            }
-            if (d < 0 || d > 20) {  // check port range.
-                exit(1);
-            }
-            pos +=2;
-
-        } else if (0 == strcmp(argv[pos], "-c")) {
-
-            c = (int) strtol(argv[pos+1], &temp, 10);
-            if (*temp != '\0') {
-                exit(1);
-            }
-            if (c < 0 || c > 20) {  // check port range.
-                exit(1);
-            }
-            pos+=2;
-
-        } else if (0 == strcmp(argv[pos], "-h")) {
-            printHelp();
-        } else {
-            exit(2);
-        }
-    }
-}
-
-*/
 /**
  *
  * @param argc
@@ -60,10 +20,13 @@ void checkArgs(int argc, char *argv[]) {
 int main(int argc, char *argv[]) {
 	vector<string> args(argv, argv + argc);
 	input_data data(args);
-
-	Init(0, data.get_stop_time());
+	SetOutput(data.get_output_file().c_str());
+	Init(0, intern_time::in_hours(data.get_stop_time()));
 	(new Shift(data))->Activate();
+	(new car_interruption(data))->Activate();
+	(new chew_interruption(data))->Activate();
     Run();
-
+	data.get_cars_store()->Output();
+	data.get_chefs_store()->Output();
 	return 0;
 }

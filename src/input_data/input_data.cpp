@@ -100,13 +100,20 @@ input_data::input_data(vector<string> args) {
 				cerr << "Invalid value of parameter " << args[i];
 				exit(1);
 			}
-        } else if (args[i] == "-car-refuel-after") {
-            try {
-                this->car_refuel_after = stoi(args[i + 1]);
-            } catch (const exception& e) {
-                cerr << "Invalid value of parameter " << args[i];
-                exit(1);
-            }
+		} else if (args[i] == "-car-capacity") {
+			try {
+				this->car_capacity = stoi(args[i + 1]);
+			} catch (const exception& e) {
+				cerr << "Invalid value of parameter " << args[i];
+				exit(1);
+			}
+		} else if (args[i] == "-pause-interval") {
+			try {
+				this->pause_interval = stoi(args[i + 1]);
+			} catch (const exception& e) {
+				cerr << "Invalid value of parameter " << args[i];
+				exit(1);
+			}
 		} else if (args[i] == "-stop-time") {
 			try {
 				this->stop_time = stoi(args[i + 1]);
@@ -114,31 +121,33 @@ input_data::input_data(vector<string> args) {
 				cerr << "Invalid value of parameter " << args[i];
 				exit(1);
 			}
+		} else if (args[i] == "-output-file") {
+			this->output_file = args[i + 1];
 		} else {
 			cerr << "Invalid parameter " << args[i] << "\n";
 			cerr << "FOOD DELIVERY MODEL\n";
 			cerr << "Params:\n";
 			cerr << "\t-car-type: define type of delivery car, can be \"diesel\" or \"gasoline\"\n";
 			cerr << "\t-car-num: number of delivering car\n";
+			cerr << "\t-car-capacity: number of orders car can take\n";
 			cerr << "\t-chef-num: number of chefs\n";
-            cerr << "\t-chef-pause: constant time of chefs pauses\n";
-			cerr << "\t-chef-center: center of normal divide for cooking time\n";
-			cerr << "\t-chef-sigma: disperse of normal divide for cooking time\n";
-			cerr << "\t-order-center: center of exponential divide for order generating time\n";
-			cerr << "\t-order-wait: after this time food will be passed to external delivery service\n";
-			cerr << "\t-car-delivery-center: center of normal divide for delivery time\n";
-			cerr << "\t-car-delivery-sigma: disperse of normal divide for delivery time\n";
-			cerr << "\t-cer-refuel-center: center of normal divide for break time\n";
-			cerr << "\t-cer-refuel-sigma: disperse of normal divide for break time\n";
-            cerr << "\t-cer-refuel-after: numbers of delivered orders before break\n";
-            cerr << "\t-stop-time: duration of simulation\n";
+			cerr << "\t-chef-pause: constant time of chefs pauses [min]\n";
+			cerr << "\t-pause-interval: interval between two pauses [min]\n";
+			cerr << "\t-chef-center: center of normal divide for cooking time [min]\n";
+			cerr << "\t-chef-sigma: disperse of normal divide for cooking time [min]\n";
+			cerr << "\t-order-center: center of exponential divide for order generating time [min]\n";
+			cerr << "\t-order-wait: after this time food will be passed to external delivery service [min]\n";
+			cerr << "\t-car-delivery-center: center of normal divide for delivery time [min]\n";
+			cerr << "\t-car-delivery-sigma: disperse of normal divide for delivery time [min]\n";
+			cerr << "\t-cer-refuel-center: center of normal divide for break time [min]\n";
+			cerr << "\t-cer-refuel-sigma: disperse of normal divide for break time [min]\n";
+			cerr << "\t-stop-time: duration of simulation [hour]\n";
+			cerr << "\t-output-file: file in which stats will be printed\n";
+
 		}
 	}
-    new_orders = new Queue;
-
-    waiting_delivery = new Queue;
-
-    kitchen = new Store("kitchen", workplaces);
+	this->chefs = new Store("chefs", this->get_chef_num());
+	this->cars = new Store("cars", this->get_car_num());
 }
 
 int input_data::get_car_type() {
@@ -200,3 +209,20 @@ int input_data::get_car_refuel_after() {
 int input_data::get_stop_time() {
 	return this->stop_time;
 }
+
+int input_data::get_pause_interval() {
+	return this->pause_interval;
+}
+
+string input_data::get_output_file() {
+	return this->output_file;
+}
+
+Store* input_data::get_chefs_store() {
+	return this->chefs;
+}
+
+Store* input_data::get_cars_store() {
+	return this->cars;
+}
+

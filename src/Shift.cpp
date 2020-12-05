@@ -1,26 +1,13 @@
-
 #include "Shift.h"
-#include "Car.h"
+#include "intern_time/intern_time.h"
+#include "Order.h"
 
 
 Shift::Shift(input_data data) : data(data) {
     this->data = data;
-
-    for (int i = 0; i < this->data.get_chef_num(); i++) { //initialize all chefs
-        this->chefs.push_back(new Chef(data));
-    }
-
-    for (int i = 0; i < this->data.get_car_num(); i++) {  //initialize all cars
-        this->cars.push_back(new Car(data));
-    }
 }
 
-/**
- * Vygeneruje objednávku a zahájí exponenciální čekání
- */
 void Shift::Behavior() {
-    {
-        (new Order(data))->wait_for_making();
-        Activate(Time + Exponential(data.get_order_center()));
-    }
+	(new Order(data))->Activate();
+    Activate(Time + Exponential(intern_time::in_minutes(data.get_order_center())));
 }
