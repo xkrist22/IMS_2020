@@ -8,8 +8,15 @@
 class Refuel : public Process {
 
 public:
+	/**
+	 * Constructor of process refuel
+	 * @param data data from terminal
+	 */
     explicit Refuel(input_data data);
 
+    /**
+     * Behavior of refuel process
+     */
     void Behavior() override;
 private:
     input_data data;

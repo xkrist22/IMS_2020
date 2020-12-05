@@ -8,8 +8,15 @@
 class Pause : public Process {
 
 public:
+	/**
+	 * Constructor of process Pause
+	 * @param data data from terminal
+	 */
     explicit Pause(input_data data);
 
+    /**
+     * Behavior of pause
+     */
     void Behavior() override;
 private:
     input_data data;

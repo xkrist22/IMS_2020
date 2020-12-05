@@ -23,13 +23,6 @@ input_data::input_data(vector<string> args) {
 				cerr << "Invalid value of parameter " << args[i];
 				exit(1);
 			}
-        } else if (args[i] == "-workplaces") {
-            try {
-                this->workplaces = stoi(args[i + 1]);
-            } catch (const exception& e) {
-                cerr << "Invalid value of parameter " << args[i];
-                exit(1);
-            }
 		} else if (args[i] == "-chef-num") {
 			try {
 				this->chef_num = stoi(args[i + 1]);
@@ -143,7 +136,6 @@ input_data::input_data(vector<string> args) {
 			cerr << "\t-cer-refuel-sigma: disperse of normal divide for break time [min]\n";
 			cerr << "\t-stop-time: duration of simulation [hour]\n";
 			cerr << "\t-output-file: file in which stats will be printed\n";
-
 		}
 	}
 	this->chefs = new Store("chefs", this->get_chef_num());
@@ -156,10 +148,6 @@ int input_data::get_car_type() {
 
 int input_data::get_car_num() {
 	return this->car_num;
-}
-
-int input_data::get_workplaces() {
-    return this->workplaces;
 }
 
 int input_data::get_chef_num() {
@@ -200,10 +188,6 @@ int input_data::get_car_refuel_center() {
 
 int input_data::get_car_refuel_sigma() {
 	return this->car_refuel_sigma;
-}
-
-int input_data::get_car_refuel_after() {
-    return this->car_refuel_after;
 }
 
 int input_data::get_stop_time() {

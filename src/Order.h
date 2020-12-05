@@ -18,11 +18,19 @@
 class Order : public Process {
 
 public:
+	/**
+	 * Constructor of Order process
+	 * @param data data from terminal
+	 */
     explicit Order(input_data data);
 
+    /**
+     * Behavior of process
+     */
     void Behavior() override;
-	double static chef_work_time;
-	double static fuel;
+
+    double static chef_work_time; /// counts time to pause
+	double static fuel; /// count fuel to refuel
 	bool static fuel_init;
 	bool static time_init;
 private:
