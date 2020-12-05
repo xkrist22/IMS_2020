@@ -3,7 +3,7 @@
 #define IMS_2020_ORDER_H
 
 #include <simlib.h>
-#include <src/input_data/input_data.h>
+#include <input_data/input_data.h>
 
 class Order : public Process {
 
