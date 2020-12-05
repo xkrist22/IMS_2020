@@ -6,8 +6,6 @@
 #include "intern_time/intern_time.h"
 #include "input_data/input_data.h"
 #include "Shift.h"
-#include "car_interruption.h"
-#include "chef_interruption.h"
 
 using namespace std;
 
