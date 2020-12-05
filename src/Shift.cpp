@@ -20,7 +20,7 @@ Shift::Shift(input_data data) : data(data) {
  */
 void Shift::Behavior() {
     {
-        (new Order(data))->Activate();
+        (new Order(data))->wait_for_making();
         Activate(Time + Exponential(data.get_order_center()));
     }
 }

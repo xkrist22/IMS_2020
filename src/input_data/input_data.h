@@ -61,6 +61,8 @@ public:
 
     int get_chef_pause();
 
+    int get_car_refuel_after();
+
     Queue *new_orders;
 
     Queue *waiting_delivery;
@@ -82,6 +84,7 @@ private:
 	int car_refuel_center;
 	int car_refuel_sigma;
 	int stop_time;
+	int car_refuel_after;
 };
 
 #endif // input_data_H

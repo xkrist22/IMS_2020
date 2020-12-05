@@ -15,8 +15,12 @@ public:
 
     void Behavior() override;
 
+    void take_a_break();
+
 private:
     input_data data;
+
+    unsigned int delivered;
 };
 
 

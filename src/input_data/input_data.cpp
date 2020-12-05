@@ -100,6 +100,13 @@ input_data::input_data(vector<string> args) {
 				cerr << "Invalid value of parameter " << args[i];
 				exit(1);
 			}
+        } else if (args[i] == "-car-refuel-after") {
+            try {
+                this->car_refuel_after = stoi(args[i + 1]);
+            } catch (const exception& e) {
+                cerr << "Invalid value of parameter " << args[i];
+                exit(1);
+            }
 		} else if (args[i] == "-stop-time") {
 			try {
 				this->stop_time = stoi(args[i + 1]);
@@ -121,9 +128,10 @@ input_data::input_data(vector<string> args) {
 			cerr << "\t-order-wait: after this time food will be passed to external delivery service\n";
 			cerr << "\t-car-delivery-center: center of normal divide for delivery time\n";
 			cerr << "\t-car-delivery-sigma: disperse of normal divide for delivery time\n";
-			cerr << "\t-cer-refuel-center: center of normal divide for refuel time\n";
-			cerr << "\t-cer-refuel-sigma: disperse of normal divide for refuel time\n";
-			cerr << "\t-stop-time: duration of simulation\n";
+			cerr << "\t-cer-refuel-center: center of normal divide for break time\n";
+			cerr << "\t-cer-refuel-sigma: disperse of normal divide for break time\n";
+            cerr << "\t-cer-refuel-after: numbers of delivered orders before break\n";
+            cerr << "\t-stop-time: duration of simulation\n";
 		}
 	}
     new_orders = new Queue;
@@ -183,6 +191,10 @@ int input_data::get_car_refuel_center() {
 
 int input_data::get_car_refuel_sigma() {
 	return this->car_refuel_sigma;
+}
+
+int input_data::get_car_refuel_after() {
+    return this->car_refuel_after;
 }
 
 int input_data::get_stop_time() {
