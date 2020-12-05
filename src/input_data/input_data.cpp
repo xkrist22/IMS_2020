@@ -5,6 +5,7 @@
 using namespace std;
 
 input_data::input_data(vector<string> args) {
+	/* TODO DEFAULT VALUES */
 	for (int i = 1; i < args.size(); i += 2) {
 		if (args[i] == "-car-type") {
 			if (args[i + 1] == "diesel") {
