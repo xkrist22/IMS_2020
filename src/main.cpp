@@ -17,12 +17,17 @@ using namespace std;
  */
 int main(int argc, char *argv[]) {
 	vector<string> args(argv, argv + argc);
-	input_data data(args);
-	SetOutput(data.get_output_file().c_str());
-	Init(0, intern_time::in_hours(data.get_stop_time()));
-	(new Shift(data))->Activate();
-    Run();
-	data.get_cars_store()->Output();
-	data.get_chefs_store()->Output();
+	try {
+		input_data data(args);
+		SetOutput(data.get_output_file().c_str());
+		Init(0, intern_time::in_hours(data.get_stop_time()));
+		(new Shift(data))->Activate();
+		Run();
+		data.get_cars_store()->Output();
+		data.get_chefs_store()->Output();
+	} catch (const char* err_msg) {
+		cerr << err_msg << "\n";
+		exit(1);
+	}
 	return 0;
 }

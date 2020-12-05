@@ -32,7 +32,18 @@ void Order::Behavior() {
     // waiting for chef
     Enter(*this->data.get_chefs_store(), 1);
     // cooking
-    double cooking_time = Normal(intern_time::in_minutes(this->data.get_chef_center()), intern_time::in_minutes(this->data.get_chef_sigma()));
+
+    double cooking_time = -1;
+    // force Normal to generate positive number
+	int i = 0;
+	while (cooking_time <= 0) {
+    	cooking_time = Normal(intern_time::in_minutes(this->data.get_chef_center()), intern_time::in_minutes(this->data.get_chef_sigma()));
+		i++;
+		if (i > FORCE_ATTEMPS) {
+			cerr << "Unable to generate positive number using Normal divide\n";
+			exit(1);
+		}
+	}
     Wait(cooking_time);
 	Order::chef_work_time -= cooking_time;
 	if (Order::chef_work_time <= 0) {
@@ -63,7 +74,17 @@ void Order::Behavior() {
 	// order is loaded into car
 	Enter(*this->data.get_cars_store(), 1);
 	// food is delivered
-	double delivery_time = Normal(intern_time::in_minutes(this->data.get_car_delivery_center()), intern_time::in_minutes(this->data.get_car_delivery_sigma()));
+	double delivery_time = -1;
+	// force Normal to generate positive number
+	i = 0;
+	while (delivery_time <= 0) {
+		delivery_time =	Normal(intern_time::in_minutes(this->data.get_car_delivery_center()), intern_time::in_minutes(this->data.get_car_delivery_sigma()));
+		i++;
+		if (i > FORCE_ATTEMPS) {
+			cerr << "Unable to generate positive number using Normal divide\n";
+			exit(1);
+		}
+	}
 	Wait(delivery_time);
 
 	// count consumption of fuel due to car type

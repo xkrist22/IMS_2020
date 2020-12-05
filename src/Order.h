@@ -13,6 +13,7 @@
 #define GASOLINE_CONSUMPTION 9.7
 #define REFERENCE_DISTANCE 100
 #define CITY_SPEED 50
+#define FORCE_ATTEMPS 20
 
 class Order : public Process {
 
