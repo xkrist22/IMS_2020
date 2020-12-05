@@ -31,56 +31,56 @@ public:
 	 * @param seconds time in seconds
 	 * @return time in default units
 	 */
-	static int in_seconds(int seconds);
+	static double in_seconds(double seconds);
 
 	/**
 	 * Method converting minutes into default units
 	 * @param minutes time in minutes
 	 * @return time in default units
 	 */
-	static int in_minutes(int minutes);
+	static double in_minutes(double minutes);
 
 	/**
 	 * Method converting hours into default units
 	 * @param hours time in hours
 	 * @return time in default units
 	 */
-	static int in_hours(int hours);
+	static double in_hours(double hours);
 
 	/**
 	 * Method converting days into default units
 	 * @param days time in days
 	 * @return time in default units
 	 */
-	static int in_days(int time);
+	static double in_days(double time);
 
 	/**
 	 * Method presenting time in default units in day unit
 	 * @param time time in default unit
 	 * @return time in days
 	 */
-	static int to_days(int time);
+	static double to_days(double time);
 
 	/**
  	 * Method presenting time in default units in hour unit
  	 * @param time time in default unit
  	 * @return time in hours
  	 */
-	static int to_hours(int time);
+	static double to_hours(double time);
 
 	/**
   	 * Method presenting time in default units in minute unit
   	 * @param time time in default unit
   	 * @return time in minutes
   	 */
-	static int to_minutes(int time);
+	static double to_minutes(double time);
 
 	/**
   	 * Method presenting time in default units in second unit
   	 * @param time time in default unit
   	 * @return time in seconds
   	 */
-	static int to_seconds(int time);
+	static double to_seconds(double time);
 
 };
 

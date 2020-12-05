@@ -3,56 +3,56 @@
 
 using namespace std;
 
-int intern_time::in_seconds(int seconds) {
+double intern_time::in_seconds(double seconds) {
 	if (seconds < 0) {
 		throw "Negative time error!";
 	}
 	return seconds;
 }
 
-int intern_time::in_minutes(int minutes) {
+double intern_time::in_minutes(double minutes) {
 	if (minutes < 0) {
 		throw "Negative time error!";
 	}
 	return minutes * SECONDS;
 }
 
-int intern_time::in_hours(int hours) {
+double intern_time::in_hours(double hours) {
 	if (hours < 0) {
 		throw "Negative time error!";
 	}
 	return hours * MINUTES * SECONDS;
 }
 
-int intern_time::in_days(int days) {
+double intern_time::in_days(double days) {
 	if (days < 0) {
 		throw "Negative time error!";
 	}
 	return days * HOURS * MINUTES * SECONDS;
 }
 
-int intern_time::to_days(int time) {
+double intern_time::to_days(double time) {
 	if (time < 0) {
 		throw "Negative time error!";
 	}
 	return time / SECONDS / MINUTES / HOURS;
 }
 
-int intern_time::to_hours(int time) {
+double intern_time::to_hours(double time) {
 	if (time < 0) {
 		throw "Negative time error!";
 	}
 	return time / SECONDS / MINUTES;
 }
 
-int intern_time::to_minutes(int time) {
+double intern_time::to_minutes(double time) {
 	if (time < 0) {
 		throw "Negative time error!";
 	}
 	return time / SECONDS;
 }
 
-int intern_time::to_seconds(int time) {
+double intern_time::to_seconds(double time) {
 	if (time < 0) {
 		throw "Negative time error!";
 	}

@@ -7,7 +7,7 @@
 #include "input_data/input_data.h"
 #include "Shift.h"
 #include "car_interruption.h"
-#include "chew_interruption.h"
+#include "chef_interruption.h"
 
 using namespace std;
 
@@ -23,8 +23,6 @@ int main(int argc, char *argv[]) {
 	SetOutput(data.get_output_file().c_str());
 	Init(0, intern_time::in_hours(data.get_stop_time()));
 	(new Shift(data))->Activate();
-	(new car_interruption(data))->Activate();
-	(new chew_interruption(data))->Activate();
     Run();
 	data.get_cars_store()->Output();
 	data.get_chefs_store()->Output();
