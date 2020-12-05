@@ -5,7 +5,7 @@
 
 CC = gcc
 SRC_FILES = src/input_data/input_data.cpp src/intern_time/intern_time.cpp src/main.cpp#src/Shift.cpp src/Order.cpp src/Chef.cpp src/Car.cpp src/main.cpp
-CC_FLAGS = -lstdc++ -o
+CC_FLAGS = -lsimlib -lstdc++ -o
 
 # compile code
 model:
@@ -19,3 +19,4 @@ debug:
 simulate:
 	./model # TODO
 
+# g++ -o ball ball.cc -lsimlib
