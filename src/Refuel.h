@@ -1,14 +1,14 @@
 
-#ifndef IMS_2020_ORDER_H
-#define IMS_2020_ORDER_H
+#ifndef IMS_2020_REFUEL_H
+#define IMS_2020_REFUEL_H
 
 #include <simlib.h>
 #include "input_data/input_data.h"
 
-class Order : public Process {
+class Refuel : public Process {
 
 public:
-    explicit Order(input_data data);
+    explicit Refuel(input_data data);
 
     void Behavior() override;
 private:
@@ -16,4 +16,4 @@ private:
     double income;
 };
 
-#endif //IMS_2020_ORDER_H
+#endif //IMS_2020_REFUEL_H

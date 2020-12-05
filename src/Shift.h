@@ -4,21 +4,17 @@
 
 #include "input_data/input_data.h"
 #include "simlib.h"
-#include "Chef.h"
-#include "Car.h"
 #include "Order.h"
 
 class Shift : public Event {
 
 public:
-    explicit Shift( input_data data);
+    explicit Shift(input_data data);
 
     void Behavior() override;
 
 private:
     input_data data;
-    vector<Chef*> chefs;
-    vector<Car*> cars;
 };
 
 

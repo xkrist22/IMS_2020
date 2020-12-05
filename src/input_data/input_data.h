@@ -14,6 +14,7 @@
 #include <vector>
 #include <stdio.h>
 #include <ctype.h>
+#include <simlib.h>
 
 /* ***************
  * INPUT DATA CONSTANTS
@@ -23,7 +24,6 @@
 
 using namespace std;
 
-#include <simlib.h>
 /**
  * Class input_data
  *
@@ -61,13 +61,15 @@ public:
 
     int get_chef_pause();
 
-    int get_car_refuel_after();
+	int get_pause_interval();
 
-    Queue *new_orders;
+	int get_car_refuel_after();
 
-    Queue *waiting_delivery;
+	string get_output_file();
 
-    Store *kitchen;
+	Store* get_chefs_store();
+
+	Store* get_cars_store();
 
 private:
 	int car_type;
@@ -76,6 +78,7 @@ private:
 	int chef_num;
 	int chef_center;
 	int chef_pause;
+	int pause_interval;
 	int chef_sigma;
 	int order_center;
 	int order_wait;
@@ -83,8 +86,12 @@ private:
 	int car_delivery_sigma;
 	int car_refuel_center;
 	int car_refuel_sigma;
+	int car_capacity;
 	int stop_time;
 	int car_refuel_after;
+	string output_file;
+	Store* chefs;
+	Store* cars;
 };
 
 #endif // input_data_H
