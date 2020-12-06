@@ -1,5 +1,6 @@
-#include <iostream>
+#include <string>
 #include "intern_time.h"
+#include <cmath>
 
 using namespace std;
 
@@ -59,3 +60,17 @@ double intern_time::to_seconds(double time) {
 	return time;
 }
 
+string intern_time::print_time(double time) {
+    int intTime = (int)time;
+    if (time < 0) {
+        throw "Negative time error!";
+    }
+    int hours, minutes, seconds;
+     hours = (intTime / SECONDS / MINUTES)%HOURS;
+    minutes = (intTime / SECONDS)%MINUTES;
+    seconds = intTime%SECONDS;
+
+    return to_string(hours) + ":" + to_string(minutes) + "." + to_string(seconds);
+
+
+}

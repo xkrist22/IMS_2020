@@ -82,6 +82,8 @@ public:
   	 */
 	static double to_seconds(double time);
 
+	static string print_time(double time);
+
 };
 
 #endif // intern_time_H

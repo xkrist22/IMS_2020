@@ -182,11 +182,11 @@ add_executable(
         src/main.cpp
         src/Shift.cpp
         src/Shift.h
-        src/Chef.cpp
-        src/Chef.h
-        src/Car.cpp
-        src/Car.h
         src/Order.cpp
         src/Order.h
+        src/Refuel.cpp
+        src/Refuel.h
+        src/Pause.cpp
+        src/Pause.h
         Makefile
         README.md)

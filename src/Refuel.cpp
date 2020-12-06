@@ -4,8 +4,12 @@
 #include <iostream>
 using namespace std;
 
+vector<double> Refuel::refuel_times;
+
 Refuel::Refuel(input_data data) : data(data) {
     this->data = data;
+    this->income = 0;
+
 }
 
 void Refuel::Behavior() {
@@ -17,7 +21,8 @@ void Refuel::Behavior() {
     // enter store of cars
     Enter(*this->data.get_cars_store(), 1);
     // car has refuel stop
-    Wait(Normal(intern_time::in_minutes(this->data.get_car_refuel_center()), intern_time::in_minutes(this->data.get_car_refuel_sigma())));
+    Refuel::refuel_times.push_back(Time);
+    Wait(abs(Normal(intern_time::in_minutes(this->data.get_car_refuel_center()), intern_time::in_minutes(this->data.get_car_refuel_sigma()))));
     // end of refuel
     Leave(*this->data.get_cars_store(), 1);
     Priority = 0;

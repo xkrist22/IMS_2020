@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <simlib.h>
+//#include "simlib/src/simlib.h"
 
 /* ***************
  * INPUT DATA CONSTANTS
@@ -49,6 +50,12 @@ public:
 	 */
 	int get_car_num();
 
+    /**
+     * Getter of car count
+     * @return number of cars to generate
+     */
+    int get_car_capacity();
+
 	/**
 	 * Getter of chef count
 	 * @return number of chefs to generate
@@ -77,7 +84,7 @@ public:
 	 * Getter of time order waits for delivery
 	 * @return constant time which order waits for delivery
 	 */
-	int get_order_wait_time();
+	int get_order_wait();
 
 	/**
 	 * Getter of center of car delivery divide
@@ -103,11 +110,17 @@ public:
 	 */
 	int get_car_refuel_sigma();
 
-	/**
-	 * Getter of simulation length
-	 * @return length of simulation
-	 */
-	int get_stop_time();
+    /**
+     * Getter of simulation end time
+     * @return end time of simulation
+     */
+    int get_stop_time();
+
+    /**
+     * Getter of simulation start time
+     * @return start time of simulation
+     */
+    int get_start_time();
 
 	/**
 	 * Getter of chef pause time
@@ -120,12 +133,6 @@ public:
      * @return constant time representing interval between pauses
      */
 	int get_pause_interval();
-
-	/**
-	 * Getter of output file name
-	 * @return name of output file
-	 */
-	string get_output_file();
 
 	/**
 	 * Getter of chefs store
@@ -155,7 +162,7 @@ private:
 	int car_refuel_sigma;
 	int car_capacity;
 	int stop_time;
-	string output_file;
+	int start_time;
 	Store* chefs;
 	Store* cars;
 };

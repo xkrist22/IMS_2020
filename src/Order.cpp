@@ -9,9 +9,13 @@ double Order::fuel = 0;
 double Order::chef_work_time = 0;
 bool Order::fuel_init = false;
 bool Order::time_init = false;
+vector<double> Order::external_delivery_times;
+vector<double> Order::internal_delivery_times;
 
 Order::Order(input_data data) : data(data) {
-	this->data = data;
+    this->income = 0;
+    this->data = data;
+
 	if (data.get_car_type() == DIESEL && !Order::fuel_init) {
 		Order::fuel = DIESEL_TANK;
 		Order::fuel_init = true;
@@ -33,18 +37,11 @@ void Order::Behavior() {
     Enter(*this->data.get_chefs_store(), 1);
     // cooking
 
-    double cooking_time = -1;
     // force Normal to generate positive number
-	int i = 0;
-	while (cooking_time <= 0) {
-    	cooking_time = Normal(intern_time::in_minutes(this->data.get_chef_center()), intern_time::in_minutes(this->data.get_chef_sigma()));
-		i++;
-		if (i > FORCE_ATTEMPS) {
-			cerr << "Unable to generate positive number using Normal divide\n";
-			exit(1);
-		}
-	}
-    Wait(cooking_time);
+
+    double cooking_time = Normal(intern_time::in_minutes(this->data.get_chef_center()), intern_time::in_minutes(this->data.get_chef_sigma()));
+
+    Wait(abs(cooking_time));
 	Order::chef_work_time -= cooking_time;
 	if (Order::chef_work_time <= 0) {
 		(new Pause(data))->Activate();
@@ -56,57 +53,69 @@ void Order::Behavior() {
     // if there is no car, order is waiting
 	if (this->data.get_cars_store()->Used() == this->data.get_car_num()) {
 		int i = 0;
-		while (i < intern_time::in_seconds(this->data.get_order_wait_time())) {
+		while (i < intern_time::in_seconds(this->data.get_order_wait())) { //TODO set timer, not cycle
 			// every second check car store
 			Wait(intern_time::in_seconds(1));
-			if (! this->data.get_cars_store()->Used() == this->data.get_car_num()) {
+			if (this->data.get_cars_store()->Used() != this->data.get_car_num()) {
 				// order will be delivered be restaurant
-				break;
+                delivering_internal();
+                return;
 			}
 			i++;
 		}
 		// order is delivered by external service
 		if (this->data.get_cars_store()->Used() == this->data.get_car_num()) {
+            delivering_external();
 			return;
 		}
 	}
 
-	// order is loaded into car
-	Enter(*this->data.get_cars_store(), 1);
-	// food is delivered
-	double delivery_time = -1;
-	// force Normal to generate positive number
-	i = 0;
-	while (delivery_time <= 0) {
-		delivery_time =	Normal(intern_time::in_minutes(this->data.get_car_delivery_center()), intern_time::in_minutes(this->data.get_car_delivery_sigma()));
-		i++;
-		if (i > FORCE_ATTEMPS) {
-			cerr << "Unable to generate positive number using Normal divide\n";
-			exit(1);
-		}
-	}
-	Wait(delivery_time);
+    // food is delivered
+    delivering_internal();
 
-	// count consumption of fuel due to car type
-	double consumption;
-	if (this->data.get_car_type() == DIESEL) {
-		consumption = (DIESEL_CONSUMPTION * (CITY_SPEED * intern_time::to_hours(delivery_time))) / REFERENCE_DISTANCE;
-	} else {
-		consumption = (GASOLINE_CONSUMPTION * (CITY_SPEED * intern_time::to_hours(delivery_time))) / REFERENCE_DISTANCE;
-	}
+}
 
-	// simulate consumption
-	Order::fuel -= consumption;
-	if (Order::fuel <= 0) {
-		// go for fuel
-		(new Refuel(data))->Activate();
-		if (data.get_car_type() == DIESEL) {
-			Order::fuel = DIESEL_TANK;
-		} else {
-			Order::fuel = GASOLINE_TANK;
-		}
-	}
-	// car returns to restaurant
-	Leave(*this->data.get_cars_store(), 1);
+void Order::delivering_external(){
+    Order::external_delivery_times.push_back(Time-this->income);
+    cout<< "extern++" << endl;
+}
+void Order::delivering_internal(){
+
+    // order is loaded into car
+    Enter(*this->data.get_cars_store(), 1);
+
+    // force Normal to generate positive number
+    double delivery_time =	Normal(intern_time::in_minutes(this->data.get_car_delivery_center()), intern_time::in_minutes(this->data.get_car_delivery_sigma()));
+    Wait(abs(delivery_time));
+
+    Order::internal_delivery_times.push_back(Time-this->income);
+    cout<< "intern++" << endl;
+
+    // count consumption of fuel due to car type
+    double consumption;
+    if (this->data.get_car_type() == DIESEL) {
+        consumption = (DIESEL_CONSUMPTION * (CITY_SPEED * intern_time::to_hours(delivery_time))) / REFERENCE_DISTANCE;
+    } else {
+        consumption = (GASOLINE_CONSUMPTION * (CITY_SPEED * intern_time::to_hours(delivery_time))) / REFERENCE_DISTANCE;
+    }
+
+    // simulate consumption
+    Order::fuel -= consumption;
+    if (Order::fuel <= 0) {
+        // go for fuel
+        (new Refuel(data))->Activate();
+        if (data.get_car_type() == DIESEL) {
+            Order::fuel = DIESEL_TANK;
+        } else {
+            Order::fuel = GASOLINE_TANK;
+        }
+    }
+
+    // car is on the way to restaurant
+    delivery_time =	Normal(intern_time::in_minutes(this->data.get_car_delivery_center()), intern_time::in_minutes(this->data.get_car_delivery_sigma()));
+    Wait(abs(delivery_time));
+
+//    car returns to restaurant
+    Leave(*this->data.get_cars_store(), 1);
 }
 

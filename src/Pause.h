@@ -3,6 +3,8 @@
 #define IMS_2020_PAUSE_H
 
 #include <simlib.h>
+//#include "simlib/src/simlib.h"
+
 #include "input_data/input_data.h"
 
 class Pause : public Process {
@@ -18,9 +20,12 @@ public:
      * Behavior of pause
      */
     void Behavior() override;
+
+    static vector<double> pause_times;
 private:
     input_data data;
     double income;
+
 };
 
 #endif //IMS_2020_PAUSE_H

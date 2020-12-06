@@ -3,6 +3,8 @@
 #define IMS_2020_REFUEL_H
 
 #include <simlib.h>
+//#include "simlib/src/simlib.h"
+
 #include "input_data/input_data.h"
 
 class Refuel : public Process {
@@ -18,6 +20,8 @@ public:
      * Behavior of refuel process
      */
     void Behavior() override;
+
+    static vector<double> refuel_times;
 private:
     input_data data;
     double income;
