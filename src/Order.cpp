@@ -9,6 +9,10 @@ double Order::fuel = 0;
 double Order::chef_work_time = 0;
 bool Order::fuel_init = false;
 bool Order::time_init = false;
+double Order::earnings = 0;
+double Order::fee = 0;
+double Order::fuel_price = 0;
+
 vector<double> Order::external_delivery_times;
 vector<double> Order::internal_delivery_times;
 
@@ -49,6 +53,8 @@ void Order::Behavior() {
 	}
     // cooked
     Leave(*this->data.get_chefs_store(), 1);
+	// price for order
+	double money = abs(Normal(this->data.get_earnings_center(), this->data.get_earnings_sigma()));
 
     // if there is no car, order is waiting
 	if (this->data.get_cars_store()->Used() == this->data.get_car_num()) {
@@ -65,19 +71,22 @@ void Order::Behavior() {
 		}
 		// order is delivered by external service
 		if (this->data.get_cars_store()->Used() == this->data.get_car_num()) {
-            delivering_external();
+            // add earnings
+            Order::fee += money * EXTERNAL_DELIVERY_FEE;
+			Order::earnings += money;
+			delivering_external();
 			return;
 		}
 	}
 
     // food is delivered
+	Order::earnings += money;
     delivering_internal();
 
 }
 
 void Order::delivering_external(){
     Order::external_delivery_times.push_back(Time-this->income);
-    cout<< "extern++" << endl;
 }
 void Order::delivering_internal(){
 
@@ -89,7 +98,6 @@ void Order::delivering_internal(){
     Wait(abs(delivery_time));
 
     Order::internal_delivery_times.push_back(Time-this->income);
-    cout<< "intern++" << endl;
 
     // count consumption of fuel due to car type
     double consumption;
@@ -106,8 +114,10 @@ void Order::delivering_internal(){
         (new Refuel(data))->Activate();
         if (data.get_car_type() == DIESEL) {
             Order::fuel = DIESEL_TANK;
-        } else {
+			Order::fuel_price += DIESEL_TANK * DIESEL_PRICE;
+		} else {
             Order::fuel = GASOLINE_TANK;
+			Order::fuel_price += GASOLINE_TANK * GASOLINE_PRICE;
         }
     }
 

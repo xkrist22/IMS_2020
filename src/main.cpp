@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 	try {
 		input_data data(args);
 //		SetOutput(data.get_output_file().c_str());
-		Init(intern_time::in_hours(data.get_start_time()), intern_time::in_hours(data.get_stop_time()));
+		Init(intern_time::in_hours(data.get_start_time()), intern_time::in_hours(data.get_stop_time()) + intern_time::in_days(data.get_day_num()));
 		auto *shift = new Shift(data);
 		shift->print_head();
 		shift->Activate();

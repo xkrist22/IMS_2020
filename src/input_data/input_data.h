@@ -122,6 +122,12 @@ public:
      */
     int get_start_time();
 
+    /**
+     * Getter of day numbers
+     * @return number of days in simulation
+     */
+    int get_day_num();
+
 	/**
 	 * Getter of chef pause time
 	 * @return constant time representing pause for chef
@@ -133,6 +139,18 @@ public:
      * @return constant time representing interval between pauses
      */
 	int get_pause_interval();
+
+	/**
+	 * Getter of center of earnings divide
+	 * @return center of earnings divide (Normal)
+	 */
+	int get_earnings_center();
+
+	/**
+	 * Getter of center of earnings disperse
+	 * @return disperse of earnings divide (Normal)
+	 */
+	int get_earnings_sigma();
 
 	/**
 	 * Getter of chefs store
@@ -163,6 +181,9 @@ private:
 	int car_capacity;
 	int stop_time;
 	int start_time;
+	int earnings_center;
+	int earnings_sigma;
+	int day_num;
 	Store* chefs;
 	Store* cars;
 };

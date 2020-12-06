@@ -131,9 +131,30 @@ input_data::input_data(vector<string> args) {
                 cerr << "Invalid value of parameter " << args[i];
                 exit(1);
             }
+		} else if (args[i] == "-day-num") {
+			try {
+				this->day_num = stoi(args[i + 1]);
+			} catch (const exception& e) {
+				cerr << "Invalid value of parameter " << args[i];
+				exit(1);
+			}
 		} else if (args[i] == "-stop-time") {
 			try {
 				this->stop_time = stoi(args[i + 1]);
+			} catch (const exception& e) {
+				cerr << "Invalid value of parameter " << args[i];
+				exit(1);
+			}
+		} else if (args[i] == "-earnings-center") {
+			try {
+				this->earnings_center = stoi(args[i + 1]);
+			} catch (const exception& e) {
+				cerr << "Invalid value of parameter " << args[i];
+				exit(1);
+			}
+		} else if (args[i] == "-earnings-sigma") {
+			try {
+				this->earnings_sigma = stoi(args[i + 1]);
 			} catch (const exception& e) {
 				cerr << "Invalid value of parameter " << args[i];
 				exit(1);
@@ -156,8 +177,11 @@ input_data::input_data(vector<string> args) {
 			cerr << "\t-car-delivery-sigma: disperse of normal divide for delivery time [min]\n";
 			cerr << "\t-car-refuel-center: center of normal divide for break time [min]\n";
 			cerr << "\t-car-refuel-sigma: disperse of normal divide for break time [min]\n";
-			cerr << "\t-stop-time: end time of simulation [hour]\n";
-            cerr << "\t-start-time: start time of simulation [hour]\n";
+			cerr << "\t-stop-time: restaurant closing hour (should be in interval 0-24) [hour]\n";
+            cerr << "\t-start-time: restaurant opening hour (should be in interval 0-24) [hour]\n";
+            cerr << "\t-day-num: numbers of simulation days\n";
+            cerr << "\t-earnings-center: center of normal divide for earnings [any currency]";
+			cerr << "\t-earnings-sigma: sigma of normal divide for earnings [any currency]";
 		}
 	}
 	this->chefs = new Store("chefs", this->get_chef_num());
@@ -224,9 +248,22 @@ int input_data::get_start_time() {
     return this->start_time;
 }
 
+int input_data::get_day_num() {
+	return this->day_num;
+}
+
 int input_data::get_pause_interval() {
 	return this->pause_interval;
 }
+
+int input_data::get_earnings_center() {
+	return this->earnings_center;
+}
+
+int input_data::get_earnings_sigma() {
+	return this->earnings_sigma;
+}
+
 
 Store* input_data::get_chefs_store() {
 	return this->chefs;

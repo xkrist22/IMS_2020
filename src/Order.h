@@ -15,6 +15,10 @@
 #define GASOLINE_CONSUMPTION 9.7
 #define REFERENCE_DISTANCE 100
 #define CITY_SPEED 50
+#define EXTERNAL_DELIVERY_FEE 0.3
+#define GASOLINE_PRICE 27.5
+#define DIESEL_PRICE 25.8
+
 
 class Order : public Process {
 
@@ -32,6 +36,9 @@ public:
 
     double static chef_work_time; /// counts time to pause
 	double static fuel; /// count fuel to refuel
+	double static earnings; /// total earnings of restaurant
+	double static fee; /// fee paid for external delivery service
+	double static fuel_price; /// money paid for fuel
 	bool static fuel_init;
 	bool static time_init;
 	vector<double> static external_delivery_times;
