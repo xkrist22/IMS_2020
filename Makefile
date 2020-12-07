@@ -19,9 +19,16 @@ PARAMS3 = -car-type diesel -car-num 2 -chef-num 3 -chef-pause 5 -chef-center 15 
 PARAMS4 = -car-type diesel -car-num 3 -chef-num 3 -chef-pause 5 -chef-center 15 -chef-sigma 3 -order-center 10 -order-wait 30 -car-delivery-center 6 -car-delivery-sigma 1 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 270 -earnings-sigma 30 -monthly-car-expenses 1100 -chefs-salary 300 -deliverers-salary 150
 
 #faster, more expensive workers
-PARAMS5 = -car-type diesel -car-num 1 -chef-num 2 -chef-pause 5 -chef-center 15 -chef-sigma 3 -order-center 15 -order-wait 30 -car-delivery-center 10 -car-delivery-sigma 2 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 170 -earnings-sigma 30 -monthly-car-expenses 1900 -chefs-salary 300 -deliverers-salary 150
-PARAMS6 = -car-type diesel -car-num 2 -chef-num 2 -chef-pause 5 -chef-center 10 -chef-sigma 2 -order-center 15 -order-wait 30 -car-delivery-center 10 -car-delivery-sigma 2 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 170 -earnings-sigma 30 -monthly-car-expenses 1900 -chefs-salary 400 -deliverers-salary 150
-PARAMS7 = -car-type diesel -car-num 2 -chef-num 2 -chef-pause 5 -chef-center 15 -chef-sigma 3 -order-center 15 -order-wait 30 -car-delivery-center 6 -car-delivery-sigma 2 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 170 -earnings-sigma 30 -monthly-car-expenses 1900 -chefs-salary 300 -deliverers-salary 250
+PARAMS5 = -car-type diesel -car-num 1 -chef-num 2 -chef-pause 5 -chef-center 15 -chef-sigma 3 -order-center 15 -order-wait 30 -car-delivery-center 10 -car-delivery-sigma 2 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 270 -earnings-sigma 30 -monthly-car-expenses 1900 -chefs-salary 300 -deliverers-salary 150
+PARAMS6 = -car-type diesel -car-num 2 -chef-num 2 -chef-pause 5 -chef-center 10 -chef-sigma 2 -order-center 15 -order-wait 30 -car-delivery-center 10 -car-delivery-sigma 2 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 270 -earnings-sigma 30 -monthly-car-expenses 1900 -chefs-salary 400 -deliverers-salary 150
+PARAMS7 = -car-type diesel -car-num 2 -chef-num 2 -chef-pause 5 -chef-center 15 -chef-sigma 3 -order-center 15 -order-wait 30 -car-delivery-center 6 -car-delivery-sigma 2 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 270 -earnings-sigma 30 -monthly-car-expenses 1900 -chefs-salary 300 -deliverers-salary 250
+
+PARAMS8 = -car-type diesel -car-num 2 -chef-num 2 -chef-pause 5 -chef-center 15 -chef-sigma 3 -order-center 10 -order-wait 30 -car-delivery-center 6 -car-delivery-sigma 1 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 270 -earnings-sigma 30 -monthly-car-expenses 1100 -chefs-salary 300 -deliverers-salary 150
+PARAMS9 = -car-type diesel -car-num 2 -chef-num 3 -chef-pause 5 -chef-center 15 -chef-sigma 3 -order-center 10 -order-wait 30 -car-delivery-center 6 -car-delivery-sigma 1 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 270 -earnings-sigma 30 -monthly-car-expenses 1100 -chefs-salary 300 -deliverers-salary 150
+PARAMS10 = -car-type diesel -car-num 2 -chef-num 4 -chef-pause 5 -chef-center 15 -chef-sigma 3 -order-center 10 -order-wait 30 -car-delivery-center 6 -car-delivery-sigma 1 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 270 -earnings-sigma 30 -monthly-car-expenses 1100 -chefs-salary 300 -deliverers-salary 150
+
+PARAMS11 = -car-type diesel -car-num 3 -chef-num 3 -chef-pause 5 -chef-center 15 -chef-sigma 3 -order-center 10 -order-wait 30 -car-delivery-center 6 -car-delivery-sigma 1 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 270 -earnings-sigma 30 -monthly-car-expenses 1100 -chefs-salary 300 -deliverers-salary 150
+PARAMS12 = -car-type gasoline -car-num 3 -chef-num 3 -chef-pause 5 -chef-center 15 -chef-sigma 3 -order-center 10 -order-wait 30 -car-delivery-center 6 -car-delivery-sigma 1 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 270 -earnings-sigma 30 -monthly-car-expenses 1100 -chefs-salary 300 -deliverers-salary 150
 
 MODEL_NAME = model
 
@@ -45,7 +52,7 @@ simulate3:
 simulate4:
 	./$(MODEL_NAME) $(PARAMS4)
 
-simulate: simulate0 simulate1 simulate2 simulate3 simulate4 simulate5 simulate6 simulate7
+simulate: simulate1 simulate2 simulate3 simulate4 simulate5 simulate6 simulate7 simulate8 simulate9 simulate10 simulate11 simulate12
 
 simulate5:
 	./$(MODEL_NAME) $(PARAMS5)
@@ -56,3 +63,17 @@ simulate6:
 simulate7:
 	./$(MODEL_NAME) $(PARAMS7)
 
+simulate8:
+	./$(MODEL_NAME) $(PARAMS5)
+
+simulate9:
+	./$(MODEL_NAME) $(PARAMS6)
+
+simulate10:
+	./$(MODEL_NAME) $(PARAMS7)
+
+simulate11:
+	./$(MODEL_NAME) $(PARAMS5)
+
+simulate12:
+	./$(MODEL_NAME) $(PARAMS6)
