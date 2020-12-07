@@ -3,7 +3,7 @@
 #define IMS_2020_ORDER_H
 
 //#include <simlib.h>
-#include "simlib/src/simlib.h"
+#include "simlib.h"
 
 #include "input_data/input_data.h"
 #include "Refuel.h"
@@ -39,12 +39,15 @@ public:
     double static earnings; /// total earnings of restaurant
     double static fee; /// fee paid for external delivery service
     double static fuel_price; /// money paid for fuel
+    int static order;
     bool static fuel_init;
     bool static time_init;
+    bool static car_ready;
     vector<double> static external_delivery_times;
     vector<double> static internal_delivery_times;
     int static refused;
 private:
+	int self_order;
     input_data data;
     double income;
 

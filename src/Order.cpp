@@ -13,6 +13,8 @@ double Order::earnings = 0;
 double Order::fee = 0;
 double Order::fuel_price = 0;
 int Order::refused = 0;
+int Order::order = 0;
+bool Order::car_ready = false;
 
 vector<double> Order::external_delivery_times;
 vector<double> Order::internal_delivery_times;
@@ -20,6 +22,8 @@ vector<double> Order::internal_delivery_times;
 Order::Order(input_data data) : data(data) {
     this->income = 0;
     this->data = data;
+    this->self_order = Order::order;
+	Order::order++;
 
     if (data.get_car_type() == DIESEL && !Order::fuel_init) {
         Order::fuel = DIESEL_TANK;
@@ -92,9 +96,20 @@ void Order::Behavior() {
             Wait(intern_time::in_seconds(1));
             if (this->data.get_cars_store()->Used() != this->data.get_car_num()) {
                 // order will be delivered be restaurant
-                Order::earnings += money;
-                delivering_internal();
-                return;
+                if (this->self_order % this->data.get_car_capacity() == 0) {
+					Order::earnings += money;
+					Order::car_ready = true;
+					delivering_internal();
+				} else {
+                	// wait until car is full
+					while (!Order::car_ready) {
+						Wait(intern_time::in_seconds(1));
+					}
+					// after
+					Order::earnings += money;
+					Order::car_ready = false;
+				}
+				return;
             }
             i++;
         }
@@ -131,6 +146,8 @@ void Order::delivering_internal() {
     // force Normal to generate positive number
     double delivery_time = Normal(intern_time::in_minutes(this->data.get_car_delivery_center()),
                                   intern_time::in_minutes(this->data.get_car_delivery_sigma()));
+    double return_time = delivery_time / 0.7;
+    delivery_time *= this->data.get_car_capacity();
     Wait(abs(delivery_time));
 
     Order::internal_delivery_times.push_back(Time - this->income);
@@ -144,6 +161,8 @@ void Order::delivering_internal() {
         consumption =
                 (GASOLINE_CONSUMPTION * (CITY_SPEED * intern_time::to_hours(delivery_time * 1.7))) / REFERENCE_DISTANCE;
     }
+
+    consumption *= this->data.get_car_capacity();
 
     // simulate consumption
     Order::fuel -= consumption;
@@ -160,7 +179,7 @@ void Order::delivering_internal() {
     }
 
     // car is on the way to restaurant
-    Wait(abs(delivery_time / 0.7));
+    Wait(abs(return_time));
 
 //    car returns to restaurant
     Leave(*this->data.get_cars_store(), 1);
