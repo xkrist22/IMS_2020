@@ -165,6 +165,9 @@ Další tři testy jsou zaměřeny na zručnost zaměstnanců. Testujeme, zda-li
 
 Poslední 2 experimenty se zabývají výběrem auta. Porovnáváme, zda-li budou nižší celkové náklady u auta na CNG, nebo u auta na diesel. 
 
+\subsubsection{Experiment 2}
+Pomocí experimentu bylo zjištěno, že se z hlediska finančního výdělku vyplatí zaměstnat méně zkušenější kuchaře, kteří objednávky vyřizují pomaleji. Byly provedeny 3 simulace, při níž restaurace zaměstnávala 2 zaměstnance. Jednotlivé výdaje a výdělky jsou podrobně uvedeny v tabulkách \ref{tab:4}, \ref{tab:5} a \ref{tab:6}.
+
 \begin{table}[h]
 \centering
 \begin{tabular}{cc}
@@ -176,6 +179,7 @@ výdaje za mzdy kuchařům &  21000 Kč \\ \hline
 čistý výdělek &  41522.9 Kč
 \end{tabular}
 \caption{2 kuchaři, 0 doručovatelů}
+\label{tab:4}
 \end{table}
 
 \begin{table}[h]
@@ -190,6 +194,7 @@ výdaje za mzdy kuchařům &  42000 Kč \\ \hline
 odmítnuto objednávek & 17
 \end{tabular}
 \caption{2 kuchaři, 0 doručovatelů}
+\label{tab:5}
 \end{table}
 
 \begin{table}[h]
@@ -204,26 +209,13 @@ výdaje za mzdy kuchařům &  63000 Kč \\ \hline
 odmítnuto objednávek & 0
 \end{tabular}
 \caption{2 kuchaři, 0 doručovatelů}
-\end{table}
-
-\begin{table}[h]
-\centering
-\begin{tabular}{cc}
-\textbf{Položka} & \textbf{hodnota}                                                                                   \\ \hline
-hrubý výdělek & 104151 Kč \\ \hline
-externí služby  & 20364.8 Kč \\ \hline                      
-výdaje za doručování &  14028 Kč \\ \hline
-výdaje za mzdy kuchařům &  63000 Kč \\ \hline
-čistý výdělek &  3369.07 Kč \\ \hline
-odmítnuto objednávek & 0
-\end{tabular}
-\caption{2 kuchaři, 0 doručovatelů}
+\label{tab:6}
 \end{table}
 
 
 \newpage
 \section{Shrnutí simulačních experimentů a závěr}
-Vytvořený model je užitečný k rozvrhnutí směn a zvolení dalších interních záležitostí jako jsou typ auta nebo platové ohodnocení zaměstnanců. Model však potřebuje pro správný výpočet validní data, což je veliký problém získat v procesu, který většinou není přesně evidován. Proto doporučujeme před použitím modelu s dostatečnou přesností změřit jednotlivé parametry, ne je jen odhadovat z předešlých zkušeností. 
+Vytvořený model je užitečný k rozvrhnutí směn a zvolení dalších interních záležitostí jako jsou typ auta nebo platové ohodnocení zaměstnanců. Model však potřebuje pro správný výpočet validní data, což je veliký problém získat v procesu, který většinou není přesně evidován. Zjištěná používaná data mohou být ovlivněna protiepidemiologickými opatřeními platnými v době získávání dat. Proto doporučujeme před použitím modelu s dostatečnou přesností změřit jednotlivé parametry, ne je jen odhadovat z předešlých zkušeností. Tyto data mohou být dynamicky upravována pomocí parametrů modelu.
 
 
 %%%%%%%%%%%%%%%%% Přílohy %%%%%%%%%%%%%%%%%
