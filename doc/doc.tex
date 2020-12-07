@@ -48,7 +48,7 @@
 V rámci projektu je řešen proces vyřizování objednávek jídel a jejich následná distribuce. Zejména z důvodu pandemie nemoci covid-19 se pro mnohá restaurační zařízení stal rozvoz jídla jedinou možností, jak jejich provoz nepřerušit. Smyslem projektu je zjistit, jaký způsob doručování jídel je pro restaurační provoz nejefektivnější a nejvýdělečnější. Díky zjištěným poznatkům je možné určit nejoptimálnější způsob doručování jídel pro restauraci.
 
 \subsection{Autoři práce}
-Na vypracování projektu se podíleli studenti FIT VUT v Brně Jiří Křištof (\texttt{xkrist22@stud.fit.vutbr.cz}) a Petr Češka (xceska05@stud.fit.vutbr.cz). 
+Na vypracování projektu se podíleli studenti FIT VUT v Brně Jiří Křištof (\texttt{xkrist22@stud.fit.vutbr.cz}) a Petr Češka (\texttt{xceska05@stud.fit.vutbr.cz}). 
 
 \subsection{Zdroje}
 Při řešení technické části projektu, jako sestavení modelu \cite[snímek 7]{IMS_course} a následná simulace \cite[snímek 8]{IMS_course}, byly využity zdroje z kurzu Modelování a simulace na FIT VUT. 
@@ -149,6 +149,9 @@ Tyto statistiky jsou vypsány na standardní výstup. Statistiky byly dále vyu�
 \section{Podstata simulačních experimentů a jejich průběh}
 Experimenty byly prováděny za účelem minimalizování provozních nákladů a maximalizování příjmů. Při vyhodnocování experimentů musí být brán důraz na to, aby bylo co nejméně objednávek, které budou muset být odmítnuty, protože kuchaři byli zaneprázdněni.
 
+
+Program přijímá některé parametrů, které se v průběhu testování nemění. A to proto, že jsme se zabývali především námi zvoleného občerstvení, ale vytvořili jsme program, který mohou používat i jiné podniky, u kterých se mohou lišit parametry objednávek, rozvozu i ceny.
+
 \subsection{Postup experimentování}
 Při experimentech byl vytvořený program spouštěn s různými parametry, výstup programu byl zaznamenáván a poté vyhodnocován porovnáváním výsledků jednotlivých experimentů.
 
@@ -158,10 +161,14 @@ jednotlivé testy lze spouštěn pomocí příkazů \texttt{make simulateX}, kde
 \subsection{Dokumentace experimentů}
 První čtyři experimenty testují, jaké počty zaměstnanců jsou ideální pro zpracování veškerých objednávek, které přišli do systému a přitom nebyl nadbytek pracovníků, což by vedlo k výdajům vyšším, než je zapotřebí.
 
+Další tři testy jsou zaměřeny na zručnost zaměstnanců. Testujeme, zda-li se vyplatí mít více začínajících pracovníků, kterým stačí nižší plat, nebo je lepší zaměstnávat méně zaměstnanců, kteří pracují rychleji, ale požadují větší mzdu.
+
+Poslední 2 experimenty se zabývají výběrem auta. Porovnáváme, zda-li budou nižší celkové náklady u auta na CNG, nebo u auta na diesel. 
+
 \begin{table}[h]
 \centering
 \begin{tabular}{cc}
-\textbf{Položka} & \textbf{cena}                                                                                   \\ \hline
+\textbf{Položka} & \textbf{hodnota}                                                                                   \\ \hline
 hrubý výdělek & 104318 Kč \\ \hline
 externí služby  & 31295.5 Kč \\ \hline                      
 výdaje za doručování &  0 Kč \\ \hline
@@ -174,12 +181,13 @@ výdaje za mzdy kuchařům &  21000 Kč \\ \hline
 \begin{table}[h]
 \centering
 \begin{tabular}{cc}
-\textbf{Položka} & \textbf{cena}                                                                                   \\ \hline
+\textbf{Položka} & \textbf{hodnota}                                                                                   \\ \hline
 hrubý výdělek & 104318 Kč \\ \hline
 externí služby  & 31295.5 Kč \\ \hline                      
 výdaje za doručování &  0 Kč \\ \hline
-výdaje za mzdy kuchařům &  21000 Kč \\ \hline
-čistý výdělek &  41522.9 Kč
+výdaje za mzdy kuchařům &  42000 Kč \\ \hline
+čistý výdělek &  31022.9 Kč \\ \hline
+odmítnuto objednávek & 17
 \end{tabular}
 \caption{2 kuchaři, 0 doručovatelů}
 \end{table}
@@ -187,12 +195,13 @@ výdaje za mzdy kuchařům &  21000 Kč \\ \hline
 \begin{table}[h]
 \centering
 \begin{tabular}{cc}
-\textbf{Položka} & \textbf{cena}                                                                                   \\ \hline
-hrubý výdělek & 104318 Kč \\ \hline
-externí služby  & 31295.5 Kč \\ \hline                      
-výdaje za doručování &  0 Kč \\ \hline
-výdaje za mzdy kuchařům &  21000 Kč \\ \hline
-čistý výdělek &  41522.9 Kč
+\textbf{Položka} & \textbf{hodnota}                                                                                   \\ \hline
+hrubý výdělek & 100773 Kč \\ \hline
+externí služby  & 20364.8 Kč \\ \hline                      
+výdaje za doručování &  14028 Kč \\ \hline
+výdaje za mzdy kuchařům &  63000 Kč \\ \hline
+čistý výdělek &  3369.07 Kč \\ \hline
+odmítnuto objednávek & 0
 \end{tabular}
 \caption{2 kuchaři, 0 doručovatelů}
 \end{table}
@@ -200,19 +209,22 @@ výdaje za mzdy kuchařům &  21000 Kč \\ \hline
 \begin{table}[h]
 \centering
 \begin{tabular}{cc}
-\textbf{Položka} & \textbf{cena}                                                                                   \\ \hline
-hrubý výdělek & 104318 Kč \\ \hline
-externí služby  & 31295.5 Kč \\ \hline                      
-výdaje za doručování &  0 Kč \\ \hline
-výdaje za mzdy kuchařům &  21000 Kč \\ \hline
-čistý výdělek &  41522.9 Kč
+\textbf{Položka} & \textbf{hodnota}                                                                                   \\ \hline
+hrubý výdělek & 104151 Kč \\ \hline
+externí služby  & 20364.8 Kč \\ \hline                      
+výdaje za doručování &  14028 Kč \\ \hline
+výdaje za mzdy kuchařům &  63000 Kč \\ \hline
+čistý výdělek &  3369.07 Kč \\ \hline
+odmítnuto objednávek & 0
 \end{tabular}
 \caption{2 kuchaři, 0 doručovatelů}
 \end{table}
+
 
 \newpage
 \section{Shrnutí simulačních experimentů a závěr}
-%TODO
+Vytvořený model je užitečný k rozvrhnutí směn a zvolení dalších interních záležitostí jako jsou typ auta nebo platové ohodnocení zaměstnanců. Model však potřebuje pro správný výpočet validní data, což je veliký problém získat v procesu, který většinou není přesně evidován. Proto doporučujeme před použitím modelu s dostatečnou přesností změřit jednotlivé parametry, ne je jen odhadovat z předešlých zkušeností. 
+
 
 %%%%%%%%%%%%%%%%% Přílohy %%%%%%%%%%%%%%%%%
 \newpage
