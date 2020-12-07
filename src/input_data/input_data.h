@@ -51,8 +51,8 @@ public:
     int get_car_num();
 
     /**
-     * Getter of car count
-     * @return number of cars to generate
+     * Getter of car capacity
+     * @return car capacity
      */
     int get_car_capacity();
 
@@ -170,8 +170,7 @@ public:
     */
     int get_monthly_car_expenses();
 
-
-    /**
+	/**
 	 * Getter of chefs store
 	 * @return store containing chefs
 	 */

@@ -230,7 +230,7 @@ int input_data::get_car_num() {
 }
 
 int input_data::get_car_capacity() {
-    return this->car_num;
+    return this->car_capacity;
 }
 
 int input_data::get_chef_num() {
