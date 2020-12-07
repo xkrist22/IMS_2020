@@ -45,13 +45,13 @@
 	%%%%%%%%%%%%%%%%% Vlastní práce %%%%%%%%%%%%%%%%%
 
 \section{Úvod}
-V rámci projektu je řešen proces vyřizování objednávek jídel a jejich následná distribuce. Zejména z důvodu pandemie nemoci covid-19 se pro mnohá restaurační zařízení stal rozvoz jídla jedinou možností, jak jejich provoz nepřerušit. Smyslem projektu je zjistit, jaký způsob doručování jídel je pro restaurační provoz nejefektivnější a nejvýdělečnější. 
+V rámci projektu je řešen proces vyřizování objednávek jídel a jejich následná distribuce. Zejména z důvodu pandemie nemoci covid-19 se pro mnohá restaurační zařízení stal rozvoz jídla jedinou možností, jak jejich provoz nepřerušit. Smyslem projektu je zjistit, jaký způsob doručování jídel je pro restaurační provoz nejefektivnější a nejvýdělečnější. Díky zjištěným poznatkům je možné určit nejoptimálnější způsob doručování jídel pro různé restaurace.
 
 \subsection{Autoři práce}
 Na vypracování projektu se podíleli studenti FIT VUT v Brně Jiří Křištof (\texttt{xkrist22@stud.fit.vutbr.cz}) a Petr Češka (xceska05@stud.fit.vutbr.cz). 
 
 \subsection{Zdroje}
-Při řešení technické části projektu, jako sestavení modelu \cite[snímek 7]{IMS_course} a následná simulace \cite[snímek 8]{IMS_course}. 
+Při řešení technické části projektu, jako sestavení modelu \cite[snímek 7]{IMS_course} a následná simulace \cite[snímek 8]{IMS_course}, byly využity zdroje z kurzu Modelování a simulace na FIT VUT. 
 
 Fakta využívaná v rámci projektu byla získána pozorováním práce zaměstnanců provozovny rychlého občerstvení Roj Kebab sídlící na adrese Skácelova 69, 612 00 Brno-Královo Pole.
 
@@ -63,17 +63,37 @@ Pro zkoumání výdělečnosti doručování z hlediska restaurací využíváme
 Validita \cite[snímek 37]{IMS_course} byla ověřována při komunikaci se zaměstnanci výše zmíněné provozovny rychlého občerstvení. Validita byla dále ověřena pomocí srovnání experimentů \cite[snímek 9]{IMS_course} s realitou.
 
 \section{Rozbor tématu, použité technologie}
-Zákazníci si v průběhu dne telefonicky či online objednávají pokrmy připravované restaurací. Restaurace má určený počet kuchařů. Každý kuchař buď připravuje objednané jídlo, nebo čeká na příjem objednávky. Po připravení objednávky je jídlo buď doručeno kurýrem restaurace, nebo je po určitém čase předáno kurýrovi externí doručovací služby. 
+Zákazníci si v průběhu dne telefonicky či online objednávají pokrmy připravované restaurací. Restaurace má určený počet kuchařů. Každý kuchař buď připravuje objednané jídlo, čeká na příjem objednávky, nebo si dopřává pauzu. Po připravení objednávky je jídlo buď doručeno kurýrem restaurace, nebo je po určitém čase předáno kurýrovi externí doručovací služby. Do nákladů restaurace jsou započítávány platy kuchařů a vlastních kurýrů.
 
-Kurýr restauračního zařízení může přepravovat pouze určité množství připravených objednávek. Tyto zásilky poté postupně rozváží. Při doručování jídla je možné využít dva různé typy vozidel. Prvním vozidlem je Peugeot Partner Combi; staitstiky o vozidle jsou uvedeny v tabulce \ref{tab:1}. Druhým testovaným vozidlem je Fiat Doblo; staitstiky o vozidle jsou uvedeny v tabulce \ref{tab:2}. Při experimentování je sledována spotřeba vozidel -- tankování paliva představuje provozní náklady a zároveň zpožďuje přepravu zásilek kurýrem.
+Kurýr restauračního zařízení postupně rozváží zásilky. Při doručování jídla je možné využít dva různé typy vozidel. Prvním vozidlem je Peugeot Partner Combi; staitstiky o vozidle jsou uvedeny v tabulce \ref{tab:1}. Druhým testovaným vozidlem je Fiat Doblo; staitstiky o vozidle jsou uvedeny v tabulce \ref{tab:2}. Druh využívaného vozidla určuje náklady na vozidlo.
+
+Vozidla při doručování spotřebovávají palivo z nádrže auta. Pokud je nádrž prázdná, řidič musí palivo znova natankovat. Tankování platí restaurační zařízení -- je započítáno do nákladů. Tankování dále způsobuje zpoždění kurýra restauračního zařízení. Dalším započítávaným nákladem restaurace jsou výdaje na provoz auta -- údržba apod. 
+
+Při návratu kurýra do restaurace je čas návratu určen na základě pozorování jako 70 \% času cesty k zákazníkovi. 
+
+Pokud je objednávka předána externí doručovací službě, pak si tato služba bere 30 \% z výdělku \cite{news} získaném danou objednávkou. 
 
 \subsection{použité postupy}
 Simulační model \cite[snímek 9]{IMS_course} je implementován programem v jazyce \texttt{C++} s využitím simulační knihovny \texttt{SIMLIB} \cite{SIMLIB}.
+Knihovna \texttt{SIMLIB} je licencována pomocí \texttt{GNU LGPL} -- knihovnu je možné využít za předpokladu, že v této nebudou prováděny změny kódu. 
 
 \subsection{Použité technologie}
+V rámci projektu jsou využívány standardní knihovny jazyka \texttt{C++}. K překladu zdrojových souborů je využit nástroj \texttt{GNU Make}
+
+Knihovna \texttt{SIMLIB} byla získána z oficiálních stránek \cite{SIMLIB}. V rámci projektu je využívána verze \texttt{3.07} vydaná dne 19, 10. 2018.
 
 \section{Koncepce modelu}
+Systém je modelován jako systém hromadné obsluhy. Jako klíčové informace byly vybrány náklady a výdělky restauračního zařízení. 
+
 \subsection{Popis konceptuálního modelu}
+Konceptuální model je vytvořen pomocí Petriho sítí. Kuchaři jsou modelováni jako sklad -- v systému může být více kuchařů, kteří mají jednu sdílenou frontu objednávek. Do fronty objednávek může být vygenerován proces s vyšší prioritou, než standardní objednávky -- proces pauzy. Po vybrání procesu pauzy z fronty je simulována přestávka -- kuchař nevyřizuje žádnou objednávku. Pauza je generována po uplynutí určité doby, v Petriho síti je tato skutečnost modelována jako "počítadlo" -- při každé splněné objednávce je do místa reprezentující čas vloženo určité množství procesů a po dovršení předem daného počtu procesů je provedena obsluha pauzy.
+
+Auta jsou modelována jako sklad -- v systému může být více aut, které mají sdílenou frontu objednávek. Do fronty může přijít prioritní proces představující nutnost natankovat palivo. Při obsluze procesu tankování není doručována žádná zásilka. V Petriho síti je toto modelováno jako "počítadlo" -- obdobně jako pro kuchaře jsou přidávány procesy do místa spotřebovaného paliva a ve chvíli, kdy je v tomto místu dostatek procesů, je proveden prioritní přechod pro simulaci tankování paliva. 
+
+Pokud procesy představující objednávky čekající ve frontě skladu kuchařů překročí určitou dobu čekání, pak tyto opouští systém. Pokud nebude objednávka vyřízena do předem určeného času, pak je tato zahozena. 
+
+Proces objednávky obsloužený kuchařem následně vstupuje do místa, odkud může systém opustit časovaným přechodem. Tento časovaný přechod představuje interval, po který objednávka čeká na kurýra restaurace. Opuštění systému tímto přechodem simuluje předání objednávky kurýrovi externí služby. Pakliže je ve skladu aut k dispozici auto, pak je zabrán 1 proces představující auto a je prováděna obsluha simulující přepravu objednávky. Po dokončení obsluhy opouští objednávka systém a auto se vrací do skladu aut, pokud není nutné provést tankování. 
+
 \subsection{Forma konceptuálního modelu}
 
 \section{Architektura simulačního modelu}
