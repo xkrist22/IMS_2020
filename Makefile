@@ -46,3 +46,12 @@ simulate3:
 simulate4:
 	./$(MODEL_NAME) $(PARAMS4)
 
+simulate5:
+	./$(MODEL_NAME) $(PARAMS5)
+
+simulate6:
+	./$(MODEL_NAME) $(PARAMS6)
+
+simulate7:
+	./$(MODEL_NAME) $(PARAMS7)
+
