@@ -168,7 +168,7 @@ input_data::input_data(vector<string> args) {
                 cerr << "Invalid value of parameter " << args[i];
                 exit(1);
             }
-        } else if (args[i] == "-monthy-car-expenses") {
+        } else if (args[i] == "-monthly-car-expenses") {
             try {
                 this->monthly_car_expenses = stoi(args[i + 1]);
             } catch (const exception &e) {
