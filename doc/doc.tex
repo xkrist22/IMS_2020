@@ -94,16 +94,64 @@ Pokud procesy představující objednávky čekající ve frontě skladu kuchař
 
 Proces objednávky obsloužený kuchařem následně vstupuje do místa, odkud může systém opustit časovaným přechodem. Tento časovaný přechod představuje interval, po který objednávka čeká na kurýra restaurace. Opuštění systému tímto přechodem simuluje předání objednávky kurýrovi externí služby. Pakliže je ve skladu aut k dispozici auto, pak je zabrán 1 proces představující auto a je prováděna obsluha simulující přepravu objednávky. Po dokončení obsluhy opouští objednávka systém a auto se vrací do skladu aut, pokud není nutné provést tankování. 
 
+\newpage
+
 \subsection{Forma konceptuálního modelu}
+Konceptuální model je reprezentován pomocí níže uvedené Petriho sítě.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=16cm]{petriNet}
+\caption{Konceptuální model ve formě Petriho sítě}
+\label{fig:1}
+\end{figure}
 
 \section{Architektura simulačního modelu}
+Simulační model je možné spouštět s parametry, které definují veškeré potřebné informace pro simulaci, jako čas simulace definovaný počtem dnů simulace a otevíracím a zavíracím časem restaurace nebo počty kuchařů a aut. Tato data se dále používají v modelu. Po provedení simulace jsou na standardní výstup vypsány statistiky o veškerých sledovaných vlastnostech modelu.
+
 \subsection{Mapování konceptuálního modelu do simulačního modelu}
+Jednotlivé prvky konceptuálního modelu jsou mapovány na model simulační.
+ 
+ \subsubsection{Objednávky}
+Procesy představující objednávky jsou implementovány třídou \texttt{Order}, která dědí ze třídy \texttt{Porcess} definované v knihovně \texttt{SIMLIB}. Metoda \texttt{Behavior} pak definuje chování procesu. Časované přechody, které je možné přerušit příchodem procesu kuchaře do skladu kuchařů je modelována s pomocí cyklického vkládání aktivace procesu a následnou kontrolou počtu kuchařů či aut v daném skladu. 
+
+Procesy objednávek jsou generovány pomocí metody implementované v rámci třídy \texttt{Shift}. Po vygenerování procesu je další proces vygenerován za čas daný exponenciálním rozložením, které má střed definováno parametrem získaným při spuštění simulace. Před generováním objednávky je kontrolován aktuální čas systému. Pakliže je tento čas, který je mapován do intervalu 0 až 24 hodin, tedy do času v rámci jednoho dne, mimo otevírací dobu restaurace, pak je odloženo další generování na čas otevření restauračního zařízení. Touto skutečností je modelováno uzavření restaurace přes noc. 
+
+\subsubsection{Kuchaři}
+Sklad kuchařů je implementován pomocí objektu třídy \texttt{Store} definované v knihovně \texttt{SIMLIB}. Každá objednávka může zabrat právě jednoho kuchaře. Počet kuchařů ve skladu je dán k tomu určeným parametrem. Kuchař může být zabrán také prioritním procesem \texttt{Pause}. Celý sklad kuchařů je vytvořen po zpracování parametrů z příkazové řádky a stejně jako tyto parametry je sklad dostupný z objektu třídy \texttt{input\_data}.
+
+Proces reprezentující pauzu kuchaře je implementován pomocí třídy \texttt{Pause}. Tento proces se díky nastavené prioritě umístí na začátek fronty skladu kuchařů. Při obsluze je simulována pauza kuchařů. Proces je generován v metodě \texttt{Behavior} objektů \texttt{Order}. Objednávky sdílí třídní proměnnou představující počítadlo času. Toto počítadlo je nastaveno na předem určenou hodnotu, od které se postupně odečítá čas zpracovávání objednávek kuchaři. Pokud hodnota tohoto počítadla klesne pod 0, pak je vygenerován proces \texttt{Pause} a počítadlo obnoveno.
+
+\subsubsection{Kurýrní auta}
+Objekt třídy \texttt{data\_input} dále udržuje sklad aut. Objednávky, které jsou obsloužené kuchařem, se tak řadí do fronty skladu aut, kde se pokoušejí zabrat právě jedno auto ze skladu aut. Sklad aut je reprezentován objektem třídy \texttt{Store}. Do fronty aut jsou dále vkládány prioritní procesy třídy \texttt{Refuel} dědící z třídy \texttt{Process}. Tento proces reprezentuje nutnost natankování paliva do auta. Obsluha tohoto procesu simuluje zpoždění způsobené tankováním.
+
+Uvedený proces třídy \texttt{Refuel} je generován v metodě \texttt{Behavior} objektu \texttt{Order}. Jednotlivé objednávky sdílí počítadlo paliva, které je při spuštění simulace inicializováno na hodnotu reprezentující plnou nádrž. Tato hodnota je závislá na vybraném typu vozidla. Při každé jízdě kurýrního auta je vypočítána spotřeba z času potřebného na doručení. Pokud počítadlo paliva klesne pod 0, pak je vygenerován proces třídy \texttt{Refuel} reprezentující nutnost natankování a tento je vložen do fronty skladu aut. 
+
+Jelikož není potřeba rozlišovat procesy aut či kuchařů, tak není nutné dále rozlišovat, který proces vybere z fronty pauzu či tankování -- tento proces způsobí zpoždění a započítá náklady restaurace, ať jej obslouží kterýkoliv proces. 
+
+\subsection{Sbírané statistiky}
+Při simulaci jsou sbírány tyto informace:
+\begin{itemize}
+\item Délka směny kuchařů
+\item Celkový počet objednávek
+\item Celkový počet odmítnutých objednávek, které nebyly obslouženy kuchařem ve stanoveném časovém intervalu
+\item Počet objednávek doručených kurýry restauračního zařízení a k tomu vážící se data -- průměrný, maximální a minimální čas doručení
+\item Počet objednávek doručených kurýry externí služby a k tomu vážící se data -- průměrný, maximální a minimální čas doručení
+\item Celkový počet pauz kuchařů
+\item Celkový počet tankování
+\item Příjmy a výdaje restaurace -- celkový výdělek za prodané jídlo, náklady na externí doručovatele, náklady na palivo a údržbu vozů, náklady na platy kuchařů a vlastních kurýrů
+\item Z výše uvedených příjmů a nákladů je vypočten čistý zisk restaurace
+\end{itemize}
+Tyto statistiky jsou vypsány na standardní výstup. Statistiky byly dále využity při shrnutí simulačních experimentů a ověřování validity porovnáním s realitou.
 
 \section{Podstata simulačních experimentů a jejich průběh}
+%TODO
 \subsection{Postup experimentování}
+%TODO
 \subsection{Dokumentace experimentů}
-
+%TODO
 \section{Shrnutí simulačních experimentů a závěr}
+%TODO
 
 %%%%%%%%%%%%%%%%% Přílohy %%%%%%%%%%%%%%%%%
 
