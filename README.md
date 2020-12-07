@@ -4,13 +4,11 @@ V rámci projektu je modelována služba rozvozu jídla. Tato služba je modelov
 
 Cílem projektu je navrhnout provozní zlepšení systému směrem k vyšší efektivitě, nižším nákladům, …
 
-
 ### Simulační studie (dokumentace)
-[doc.pdf](./doc/doc.pdf)
+Simulační studie je uvedena v dokumentaci - soubor doc.pdf.
 
 ### Zdrojové soubory simulačního modelu
-- `./src/*.cpp`
-- `./src/*.hpp`
+Zdrojové soubory jsou uloženy v adresáři `src`
 
 ### Překlad simulačního modelu
 ```bash
@@ -18,18 +16,11 @@ $ make
 ```
 
 ### Spuštění simulačního module
-Spuštění s výchozími argumenty:
+Spuštění experimentů s výchozími argumenty:
 ```bash
-$ make run
-```
-Příklad spuštění s argumenty:
-```bash
-$
+$ make simulate
 ```
 
 ### Autoři
 - Petr Češka (xceska05)
 - Jiří křištof (xkrist22)
-
-### licence
-TODO
