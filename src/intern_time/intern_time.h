@@ -82,7 +82,19 @@ public:
   	 */
 	static double to_seconds(double time);
 
+	/**
+	 * Prints time in format hh:mm.ss
+	 * @param time time in seconds
+	 * @return time string
+	 */
 	static string print_time(double time);
+
+    /**
+ * Prints time in format dd|hh:mm.ss
+ * @param time time in seconds
+ * @return time string
+ */
+    static string print_daytime(double time);
 
 };
 

@@ -1,4 +1,6 @@
+#include <numeric>
 #include <iostream>
+#include <algorithm>
 #include "Shift.h"
 #include "intern_time/intern_time.h"
 #include "Order.h"
@@ -69,28 +71,39 @@ void Shift::print_stats() {
     cout << "-----------------------------------------------" << endl;
 
     cout << "Delivered by restaurant: " + to_string(orders_intern) << endl;
-//    cout << "Minimální čas: " + to_string(Order::internal_delivery_times) << endl;
-//    cout << "Maximální čas: " + to_string(orders_intern) << endl;
-//    cout << "Průměrný čas: " + to_string(orders_intern) << endl;
 
+    if ( orders_intern != 0) {
+        cout << "Average time: " <<  intern_time::print_time(accumulate( Order::internal_delivery_times.begin(), Order::internal_delivery_times.end(), 0.0) / orders_intern) << endl;
+        auto minmax = minmax_element(Order::internal_delivery_times.begin(), Order::internal_delivery_times.end());
+        cout << "Minimal time: " <<  intern_time::print_time(*minmax.first) << endl;
+        cout << "Maximal time: " <<  intern_time::print_time(*minmax.second) << endl;
 
-    cout << "-----------------------------------------------" << endl; //TODO min, max, avg
+    }
+    cout << "-----------------------------------------------" << endl; //TODO print times distributed by days
 
     cout << "Delivered by external service: " + to_string(orders_extern) << endl;
+
+    if ( orders_intern != 0) {
+        cout << "Average time: " <<  intern_time::print_time(accumulate( Order::external_delivery_times.begin(), Order::external_delivery_times.end(), 0.0) / orders_extern) << endl;
+        auto minmax = minmax_element(Order::external_delivery_times.begin(), Order::external_delivery_times.end());
+        cout << "Minimal time: " <<  intern_time::print_time(*minmax.first) << endl;
+        cout << "Maximal time: " <<  intern_time::print_time(*minmax.second) << endl;
+
+    }
 
     cout << "-----------------------------------------------" << endl;
 
     cout << "Chefs had " + to_string(Pause::pause_times.size()) + " pauses" << endl << "In times:" << endl;
-    for (int i = 0; i < Pause::pause_times.size(); ++i) {
-        cout << intern_time::print_time(Pause::pause_times[i]) << "  ||  ";
+    for (double pause_time : Pause::pause_times) {
+        cout << intern_time::print_daytime(pause_time) << "  --  ";
     }
     cout << endl << "-----------------------------------------------" << endl;
 
     cout << "Drivers went " + to_string(Refuel::refuel_times.size()) + "x for fuel" << endl << "In times:" << endl;
-    for (int i = 0; i < Refuel::refuel_times.size(); ++i) {
-        cout << intern_time::print_time(Refuel::refuel_times[i]) << "  ||  ";
+    for (double refuel_time : Refuel::refuel_times) {
+        cout << intern_time::print_daytime(refuel_time) << "  --  ";
     }
-    cout << endl << "-----------------------------------------------" << endl;
+    cout << endl << "-----------------------------------------------" << endl; //TODO count with car price atd
 
     cout << "Restaurant earns " << Order::earnings << " (gross earnings)" << endl;
 	cout << "Restaurant paid " << Order::fee << " to external delivery service" << endl;

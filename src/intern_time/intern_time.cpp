@@ -66,11 +66,27 @@ string intern_time::print_time(double time) {
         throw "Negative time error!";
     }
     int hours, minutes, seconds;
-     hours = (intTime / SECONDS / MINUTES)%HOURS;
+    hours = (intTime / SECONDS / MINUTES)%HOURS;
     minutes = (intTime / SECONDS)%MINUTES;
     seconds = intTime%SECONDS;
 
-    return to_string(hours) + ":" + to_string(minutes) + "." + to_string(seconds);
+    return  to_string(hours) + ":" + to_string(minutes) + "." + to_string(seconds);
+
+
+}
+
+string intern_time::print_daytime(double time) {
+    int intTime = (int)time;
+    if (time < 0) {
+        throw "Negative time error!";
+    }
+    int days, hours, minutes, seconds;
+    days = (intTime / SECONDS / MINUTES /HOURS);
+    hours = (intTime / SECONDS / MINUTES)%HOURS;
+    minutes = (intTime / SECONDS)%MINUTES;
+    seconds = intTime%SECONDS;
+
+    return  to_string(days) + "|" + to_string(hours) + ":" + to_string(minutes) + "." + to_string(seconds);
 
 
 }
