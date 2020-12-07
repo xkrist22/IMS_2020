@@ -105,7 +105,6 @@ void Order::Behavior() {
 					while (!Order::car_ready) {
 						Wait(intern_time::in_seconds(1));
 					}
-					// after
 					Order::earnings += money;
 					Order::car_ready = false;
 				}
@@ -161,8 +160,6 @@ void Order::delivering_internal() {
         consumption =
                 (GASOLINE_CONSUMPTION * (CITY_SPEED * intern_time::to_hours(delivery_time * 1.7))) / REFERENCE_DISTANCE;
     }
-
-    consumption *= this->data.get_car_capacity();
 
     // simulate consumption
     Order::fuel -= consumption;
