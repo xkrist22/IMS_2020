@@ -45,7 +45,7 @@ simulate3:
 simulate4:
 	./$(MODEL_NAME) $(PARAMS4)
 
-simulate: simulate0 simulate1 simulate2 simulate3 simulate4
+simulate: simulate0 simulate1 simulate2 simulate3 simulate4 simulate5 simulate6 simulate7
 
 simulate5:
 	./$(MODEL_NAME) $(PARAMS5)
