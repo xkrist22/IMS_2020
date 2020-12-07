@@ -159,11 +159,52 @@ Při experimentech byl vytvořený program spouštěn s různými parametry, vý
 jednotlivé testy lze spouštěn pomocí příkazů \texttt{make simulateX}, kde \texttt{X} nahrazuje číslo požadovaného experimentu.
 
 \subsection{Dokumentace experimentů}
-První čtyři experimenty testují, jaké počty zaměstnanců jsou ideální pro zpracování veškerých objednávek, které přišli do systému a přitom nebyl nadbytek pracovníků, což by vedlo k výdajům vyšším, než je zapotřebí.
 
-Další tři testy jsou zaměřeny na zručnost zaměstnanců. Testujeme, zda-li se vyplatí mít více začínajících pracovníků, kterým stačí nižší plat, nebo je lepší zaměstnávat méně zaměstnanců, kteří pracují rychleji, ale požadují větší mzdu.
 
-Poslední 2 experimenty se zabývají výběrem auta. Porovnáváme, zda-li budou nižší celkové náklady u auta na CNG, nebo u auta na diesel. 
+\subsubsection{Experiment 1}
+Testy jsou zaměřeny na zručnost zaměstnanců. Testujeme, zda-li se vyplatí mít více začínajících pracovníků, kterým stačí nižší plat, nebo je lepší zaměstnávat méně zaměstnanců, kteří pracují rychleji, ale požadují větší mzdu.
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cc}
+\textbf{Položka} & \textbf{hodnota}                                                                                   \\ \hline
+hrubý výdělek & 110714 Kč \\ \hline
+externí služby  & 29034 Kč \\ \hline
+výdaje za doručování &  43184 Kč \\ \hline
+výdaje za mzdy kuchařům &  42000 Kč \\ \hline
+čistý výdělek &  17901.1 Kč
+\end{tabular}
+\caption{2 kuchaři, 1 rychlý doručovatel}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cc}
+\textbf{Položka} & \textbf{hodnota}                                                                                   \\ \hline
+hrubý výdělek & 111401 Kč \\ \hline
+externí služby  & 25606.4 Kč \\ \hline
+výdaje za doručování &  43184 Kč \\ \hline
+výdaje za mzdy kuchařům &  56000 Kč \\ \hline
+čistý výdělek & -13763.3 Kč
+\end{tabular}
+\caption{2 rychlí kuchaři, 2 doručovatelé}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cc}
+\textbf{Položka} & \textbf{hodnota}                                                                                   \\ \hline
+hrubý výdělek & 110451 Kč \\ \hline
+externí služby  & 21570.6 Kč \\ \hline
+výdaje za doručování &  63010 Kč \\ \hline
+výdaje za mzdy kuchařům &  42000 Kč \\ \hline
+čistý výdělek &  -9129.78 Kč \\ \hline
+\end{tabular}
+\caption{2 kuchaři, 2 doručovatelé}
+\end{table}
+
+\newpage
 
 \subsubsection{Experiment 2}
 Pomocí experimentu bylo zjištěno, že se z hlediska finančního výdělku menších restauračních zařízení vyplatí využívat služeb externích doručovacích služeb -- restaurační zařízení by muselo pořídit velké množství vozidel, aby stíhala doručovat včas veškeré objednávky a nemusela tak využívat služeb externího kurýra. Výdělky a jednotlivé náklady jsou uvedeny v tabulkách \ref{tab:4}, \ref{tab:5} a \ref{tab:6}. 
@@ -224,6 +265,92 @@ výdaje za mzdy kuchařům &  63000 Kč \\ \hline
 \end{tabular}
 \caption{3 kuchaři, 3 doručovatelé}
 \end{table}
+
+
+\newpage
+
+
+\subsubsection{Experiment 3}
+
+
+Různý počet kuchařů:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cc}
+\textbf{Položka} & \textbf{hodnota}                                                                                   \\ \hline
+hrubý výdělek & 160180 Kč \\ \hline
+externí služby  & 34917.6Kč \\ \hline
+výdaje za doručování &  43185 Kč \\ \hline
+výdaje za mzdy kuchařům &  42000 Kč \\ \hline
+čistý výdělek &  40077.9 Kč \\ \hline
+Odmítnuto objednávek &  12
+\end{tabular}
+\caption{2 kuchaři}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cc}
+\textbf{Položka} & \textbf{hodnota}                                                                                   \\ \hline
+hrubý výdělek & 161513 Kč \\ \hline
+externí služby  & 35769.9 Kč \\ \hline
+výdaje za doručování &  43185 Kč \\ \hline
+výdaje za mzdy kuchařům &  63000 Kč \\ \hline
+čistý výdělek & 19557.9Kč \\ \hline
+Odmítnuto objednávek &  0
+\end{tabular}
+\caption{3 kuchaři}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cc}
+\textbf{Položka} & \textbf{hodnota}                                                                                   \\ \hline
+hrubý výdělek & 159559 Kč \\ \hline
+externí služby  & 35170.5 Kč \\ \hline
+výdaje za doručování &  43185 Kč \\ \hline
+výdaje za mzdy kuchařům &  84000 Kč \\ \hline
+čistý výdělek &  -2796.28 Kč\\ \hline
+\end{tabular}
+\caption{4 kuchaři}
+\end{table}
+
+\newpage
+
+
+\subsubsection{Experiment 4}
+
+Poslední 2 testy se zabývají výběrem auta. Porovnáváme, zda-li budou nižší celkové náklady u auta na CNG, nebo u auta na diesel. 
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cc}
+\textbf{Položka} & \textbf{hodnota}                                                                                   \\ \hline
+hrubý výdělek & 164056 Kč \\ \hline
+externí služby  & 30769.5 Kč \\ \hline
+výdaje za doručování &  63230 Kč \\ \hline
+výdaje za mzdy kuchařům &  63000 Kč \\ \hline
+čistý výdělek & 7056.58 Kč\\ \hline
+\end{tabular}
+\caption{pohon -- diesel}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cc}
+\textbf{Položka} & \textbf{hodnota}                                                                                   \\ \hline
+hrubý výdělek & 167842 Kč \\ \hline
+externí služby  & 31896.5 Kč \\ \hline
+výdaje za doručování &  75510 Kč \\ \hline
+výdaje za mzdy kuchařům &  63000 Kč \\ \hline
+čistý výdělek & -3104.17 Kč\\ \hline
+Odmítnuto objednávek &  0
+\end{tabular}
+\caption{pohon -- CLG}
+\end{table}
+
 
 
 \newpage

@@ -28,7 +28,7 @@ PARAMS9 = -car-type diesel -car-num 2 -chef-num 3 -chef-pause 5 -chef-center 15 
 PARAMS10 = -car-type diesel -car-num 2 -chef-num 4 -chef-pause 5 -chef-center 15 -chef-sigma 3 -order-center 10 -order-wait 30 -car-delivery-center 6 -car-delivery-sigma 1 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 270 -earnings-sigma 30 -monthly-car-expenses 1100 -chefs-salary 300 -deliverers-salary 150
 
 PARAMS11 = -car-type diesel -car-num 3 -chef-num 3 -chef-pause 5 -chef-center 15 -chef-sigma 3 -order-center 10 -order-wait 30 -car-delivery-center 6 -car-delivery-sigma 1 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 270 -earnings-sigma 30 -monthly-car-expenses 1100 -chefs-salary 300 -deliverers-salary 150
-PARAMS12 = -car-type gasoline -car-num 3 -chef-num 3 -chef-pause 5 -chef-center 15 -chef-sigma 3 -order-center 10 -order-wait 30 -car-delivery-center 6 -car-delivery-sigma 1 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 270 -earnings-sigma 30 -monthly-car-expenses 1100 -chefs-salary 300 -deliverers-salary 150
+PARAMS12 = -car-type gasoline -car-num 3 -chef-num 3 -chef-pause 5 -chef-center 15 -chef-sigma 3 -order-center 10 -order-wait 30 -car-delivery-center 6 -car-delivery-sigma 1 -car-refuel-center 12 -car-refuel-sigma 2 -start-time 11 -stop-time 21 -car-capacity 10 -pause-interval 60 -day-num 7 -earnings-center 270 -earnings-sigma 30 -monthly-car-expenses 550 -chefs-salary 300 -deliverers-salary 150
 
 MODEL_NAME = model
 
@@ -64,16 +64,16 @@ simulate7:
 	./$(MODEL_NAME) $(PARAMS7)
 
 simulate8:
-	./$(MODEL_NAME) $(PARAMS5)
+	./$(MODEL_NAME) $(PARAMS8)
 
 simulate9:
-	./$(MODEL_NAME) $(PARAMS6)
+	./$(MODEL_NAME) $(PARAMS9)
 
 simulate10:
-	./$(MODEL_NAME) $(PARAMS7)
+	./$(MODEL_NAME) $(PARAMS10)
 
 simulate11:
-	./$(MODEL_NAME) $(PARAMS5)
+	./$(MODEL_NAME) $(PARAMS11)
 
 simulate12:
-	./$(MODEL_NAME) $(PARAMS6)
+	./$(MODEL_NAME) $(PARAMS12)
