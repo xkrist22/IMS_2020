@@ -68,7 +68,7 @@ void Shift::print_stats() {
          << this->data.get_day_num() << " days]" << endl;
     cout << "-----------------------------------------------" << endl;
 
-    cout << "Total number of orders: " + to_string(orders_extern + orders_intern) << endl;
+    cout << "Total number of orders: " + to_string(orders_extern + orders_intern + Order::refused) << endl;
     cout << "-----------------------------------------------" << endl;
 
     cout << "Delivered by restaurant: " + to_string(orders_intern) << endl;
@@ -97,6 +97,8 @@ void Shift::print_stats() {
     }
 
     cout << "-----------------------------------------------" << endl;
+	cout << "Refused orders: " << Order::refused  << " (because chef could not prepare order for 1 hour)" << endl;
+	cout << "-----------------------------------------------" << endl;
 
     cout << "Chefs had " + to_string(Pause::pause_times.size()) + " pauses" << endl << "In times:" << endl;
     for (double pause_time : Pause::pause_times) {
@@ -122,9 +124,7 @@ void Shift::print_stats() {
     cout << "Restaurant paid " << deliverers_sal << " to Deliverers" << endl;
     cout << "Restaurant earns " << Order::earnings - Order::fee - Order::fuel_price - car_wear - chefs_sal - deliverers_sal << " (net earnings)" << endl;
 
-    cout << "-----------------------------------------------" << endl;
 
-    cout << "Refused orders: " << Order::refused  << " (because chef could not prepare order for 1 hour)" << endl;
 
 
 
