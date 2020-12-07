@@ -86,6 +86,10 @@ void Order::Behavior() {
 }
 
 void Order::delivering_external(){
+    // time after which external services will delivery the order
+    double delivery_time =	Normal(intern_time::in_minutes(this->data.get_car_delivery_center()), intern_time::in_minutes(this->data.get_car_delivery_sigma()));
+    Wait(abs(delivery_time));
+
     Order::external_delivery_times.push_back(Time-this->income);
 }
 void Order::delivering_internal(){
