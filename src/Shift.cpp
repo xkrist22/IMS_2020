@@ -113,8 +113,8 @@ void Shift::print_stats() {
     cout << endl << "-----------------------------------------------" << endl;
 
     int car_wear = this->data.get_car_num()*this->data.get_monthly_car_expenses()*this->data.get_day_num()/30;
-    int chefs_sal = ((this->data.get_stop_time() - this->data.get_start_time()) * this->data.get_day_num())*this->data.get_chefs_salary();
-    int deliverers_sal =  ((this->data.get_stop_time() - this->data.get_start_time()) * this->data.get_day_num())*this->data.get_deliverers_salary();
+    int chefs_sal = this->data.get_chef_num() * ((this->data.get_stop_time() - this->data.get_start_time()) * this->data.get_day_num())*this->data.get_chefs_salary();
+    int deliverers_sal = this->data.get_car_num()* ((this->data.get_stop_time() - this->data.get_start_time()) * this->data.get_day_num())*this->data.get_deliverers_salary();
 
     cout << "Restaurant earns " << Order::earnings << " (gross earnings)" << endl;
     cout << "Restaurant paid " << Order::fee << " to external delivery service" << endl;
