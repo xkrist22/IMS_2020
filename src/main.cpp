@@ -28,9 +28,9 @@ int main(int argc, char *argv[]) {
 		Run();
 		shift->print_stats();
 
-        SIMLIB_statistics.Output();
-        data.get_cars_store()->Output();
-        data.get_chefs_store()->Output();
+//        SIMLIB_statistics.Output();
+//        data.get_cars_store()->Output();
+//        data.get_chefs_store()->Output();
 
     } catch (const char* err_msg) {
 		cerr << err_msg << "\n";

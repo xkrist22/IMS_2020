@@ -23,10 +23,10 @@
 class Order : public Process {
 
 public:
-	/**
-	 * Constructor of Order process
-	 * @param data data from terminal
-	 */
+    /**
+     * Constructor of Order process
+     * @param data data from terminal
+     */
     explicit Order(input_data data);
 
     /**
@@ -35,19 +35,21 @@ public:
     void Behavior() override;
 
     double static chef_work_time; /// counts time to pause
-	double static fuel; /// count fuel to refuel
-	double static earnings; /// total earnings of restaurant
-	double static fee; /// fee paid for external delivery service
-	double static fuel_price; /// money paid for fuel
-	bool static fuel_init;
-	bool static time_init;
-	vector<double> static external_delivery_times;
-	vector<double> static internal_delivery_times;
+    double static fuel; /// count fuel to refuel
+    double static earnings; /// total earnings of restaurant
+    double static fee; /// fee paid for external delivery service
+    double static fuel_price; /// money paid for fuel
+    bool static fuel_init;
+    bool static time_init;
+    vector<double> static external_delivery_times;
+    vector<double> static internal_delivery_times;
+    int static refused;
 private:
     input_data data;
     double income;
 
     void delivering_external();
+
     void delivering_internal();
 
 

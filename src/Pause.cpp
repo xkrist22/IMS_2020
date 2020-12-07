@@ -2,6 +2,7 @@
 #include "intern_time/intern_time.h"
 #include "input_data/input_data.h"
 #include <iostream>
+
 using namespace std;
 
 vector<double> Pause::pause_times;
@@ -13,7 +14,7 @@ Pause::Pause(input_data data) : data(data) {
 }
 
 void Pause::Behavior() {
-	// save income time
+    // save income time
     this->income = Time;
 
     // pause has priority

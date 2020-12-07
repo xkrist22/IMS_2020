@@ -32,23 +32,23 @@ using namespace std;
  */
 class input_data {
 public:
-	/**
-	 * Method for parsing data from terminal into object
-	 * @param args data from terminal
-	 */
-	input_data(vector<string> args);
+    /**
+     * Method for parsing data from terminal into object
+     * @param args data from terminal
+     */
+    input_data(vector<string> args);
 
-	/**
-	 * getter of car type
-	 * @return type of car (Diesel or gasoline)
-	 */
-	int get_car_type();
+    /**
+     * getter of car type
+     * @return type of car (Diesel or gasoline)
+     */
+    int get_car_type();
 
-	/**
-	 * Getter of car count
-	 * @return number of cars to generate
-	 */
-	int get_car_num();
+    /**
+     * Getter of car count
+     * @return number of cars to generate
+     */
+    int get_car_num();
 
     /**
      * Getter of car count
@@ -56,59 +56,59 @@ public:
      */
     int get_car_capacity();
 
-	/**
-	 * Getter of chef count
-	 * @return number of chefs to generate
-	 */
-	int get_chef_num();
+    /**
+     * Getter of chef count
+     * @return number of chefs to generate
+     */
+    int get_chef_num();
 
-	/**
-	 * Getter of center of order divide
-	 * @return center of order divide (Exponential)
-	 */
-	int get_order_center();
+    /**
+     * Getter of center of order divide
+     * @return center of order divide (Exponential)
+     */
+    int get_order_center();
 
-	/**
-	 * Getter of center of chef divide
-	 * @return center of chef divide (Normal)
-	 */
-	int get_chef_center();
+    /**
+     * Getter of center of chef divide
+     * @return center of chef divide (Normal)
+     */
+    int get_chef_center();
 
-	/**
-	 * Getter of dispersion of chef divide
-	 * @return dispersion of chef divide (Normal)
-	 */
-	int get_chef_sigma();
+    /**
+     * Getter of dispersion of chef divide
+     * @return dispersion of chef divide (Normal)
+     */
+    int get_chef_sigma();
 
-	/**
-	 * Getter of time order waits for delivery
-	 * @return constant time which order waits for delivery
-	 */
-	int get_order_wait();
+    /**
+     * Getter of time order waits for delivery
+     * @return constant time which order waits for delivery
+     */
+    int get_order_wait();
 
-	/**
-	 * Getter of center of car delivery divide
-	 * @return center of car delivery divide (Normal)
-	 */
-	int get_car_delivery_center();
+    /**
+     * Getter of center of car delivery divide
+     * @return center of car delivery divide (Normal)
+     */
+    int get_car_delivery_center();
 
-	/**
-	 * Getter of disperse of car delivery divide
-	 * @return disperse of car delivery divide (Normal)
-	 */
-	int get_car_delivery_sigma();
+    /**
+     * Getter of disperse of car delivery divide
+     * @return disperse of car delivery divide (Normal)
+     */
+    int get_car_delivery_sigma();
 
-	/**
-	 * Getter of center of car refuel divide
-	 * @return center of car refuel divide (Normal)
-	 */
-	int get_car_refuel_center();
+    /**
+     * Getter of center of car refuel divide
+     * @return center of car refuel divide (Normal)
+     */
+    int get_car_refuel_center();
 
-	/**
-	 * Getter of disperse of car refuel divide
-	 * @return disperse of car refuel divide (Normal)
-	 */
-	int get_car_refuel_sigma();
+    /**
+     * Getter of disperse of car refuel divide
+     * @return disperse of car refuel divide (Normal)
+     */
+    int get_car_refuel_sigma();
 
     /**
      * Getter of simulation end time
@@ -128,64 +128,86 @@ public:
      */
     int get_day_num();
 
-	/**
-	 * Getter of chef pause time
-	 * @return constant time representing pause for chef
-	 */
+    /**
+     * Getter of chef pause time
+     * @return constant time representing pause for chef
+     */
     int get_chef_pause();
 
     /**
      * Getter of interval between pauses
      * @return constant time representing interval between pauses
      */
-	int get_pause_interval();
+    int get_pause_interval();
 
-	/**
-	 * Getter of center of earnings divide
-	 * @return center of earnings divide (Normal)
-	 */
-	int get_earnings_center();
+    /**
+     * Getter of center of earnings divide
+     * @return center of earnings divide (Normal)
+     */
+    int get_earnings_center();
 
-	/**
-	 * Getter of center of earnings disperse
-	 * @return disperse of earnings divide (Normal)
-	 */
-	int get_earnings_sigma();
+    /**
+     * Getter of center of earnings disperse
+     * @return disperse of earnings divide (Normal)
+     */
+    int get_earnings_sigma();
 
-	/**
+    /**
+ * Getter of chefs salary
+ * @return supergross wage per hour
+ */
+    int get_chefs_salary();
+
+    /**
+    * Getter of deliverers salary
+    * @return supergross wage per hour
+    */
+    int get_deliverers_salary();
+
+    /**
+    * Getter of monthly car expenses and repair checks
+    * @return monthly car expenses
+    */
+    int get_monthly_car_expenses();
+
+
+    /**
 	 * Getter of chefs store
 	 * @return store containing chefs
 	 */
-	Store* get_chefs_store();
+    Store *get_chefs_store();
 
-	/**
-	 * Getter of cars store
-	 * @return store containing cars
-	 */
-	Store* get_cars_store();
+    /**
+     * Getter of cars store
+     * @return store containing cars
+     */
+    Store *get_cars_store();
 
 private:
-	int car_type;
-	int car_num;
-	int chef_num;
-	int chef_center;
-	int chef_pause;
-	int pause_interval;
-	int chef_sigma;
-	int order_center;
-	int order_wait;
-	int car_delivery_center;
-	int car_delivery_sigma;
-	int car_refuel_center;
-	int car_refuel_sigma;
-	int car_capacity;
-	int stop_time;
-	int start_time;
-	int earnings_center;
-	int earnings_sigma;
-	int day_num;
-	Store* chefs;
-	Store* cars;
+    int car_type;
+    int car_num;
+    int chef_num;
+    int chef_center;
+    int chef_pause;
+    int pause_interval;
+    int chef_sigma;
+    int order_center;
+    int order_wait;
+    int car_delivery_center;
+    int car_delivery_sigma;
+    int car_refuel_center;
+    int car_refuel_sigma;
+    int car_capacity;
+    int stop_time;
+    int start_time;
+    int earnings_center;
+    int earnings_sigma;
+    int day_num;
+    int chefs_salary;
+    int deliverer_salary;
+    int monthly_car_expenses;
+    Store *chefs;
+    Store *cars;
 };
 
 #endif // input_data_H

@@ -9,10 +9,10 @@
 class Shift : public Event {
 
 public:
-	/**
-	 * Generator of Order processes
-	 * @param data data from terminal
-	 */
+    /**
+     * Generator of Order processes
+     * @param data data from terminal
+     */
     explicit Shift(input_data data);
 
     /**
